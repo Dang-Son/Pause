@@ -46,9 +46,8 @@ Route::post('/artist', [ArtistController::class, 'store']);
 
 Route::patch('/artist/{artist}', [ArtistController::class, 'update']);
 
-Route::delete('/artist/{artist}', [ArtistController::class, 'destroy']);
+// Route::delete('/artist/{artist}', [ArtistController::class, 'destroy']);
 
 
 
 Route::delete('/sdsdsd', [ArtistController::class, 'destroy']);
-
