@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name_song');
             $table->unsignedBigInteger('artist_id');
-            $table->string('author');
             $table->integer('liked');
             $table->integer('views');
             $table->string('category');

@@ -7,20 +7,22 @@ use Illuminate\Http\Request;
 
 class SongsController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $listSongs = Song::all();
 
         return $listSongs;
     }
-    
-    public function show(Song $song){
+
+    public function show(Song $song)
+    {
         return $song;
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $song = Song::create([
             'name_song' => $request->input('name_song'),
-            'author' => $request->input('author'),
             'liked' => $request->input('liked'),
             'views' => $request->input('views'),
             'category' => $request->input('category'),
@@ -28,14 +30,15 @@ class SongsController extends Controller
         return $song;
     }
 
-    public function update(Request $request, Song $song){
-       $song->update(['name_song'=>$request->input('name_song'), 'author'=>$request->input('author'), 'category'=>$request->input('category')]);
-       return $song;
+    public function update(Request $request, Song $song)
+    {
+        $song->update(['name_song' => $request->input('name_song'), 'category' => $request->input('category'), 'liked' => $request->input('liked'), 'views' => $request->input('views')]);
+        return $song;
     }
 
-    public function delete(Song $song){
-        $delete = Song::find($song)->delete();
-        return $delete;
+    public function delete(Song $song)
+    {
+        $song->delete();
+        return response(null, 204);
     }
-
 }

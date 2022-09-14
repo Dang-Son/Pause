@@ -31,7 +31,7 @@ Route::post('/song', [SongsController::class, 'store']);
 
 Route::patch('/song/{song}', [SongsController::class, 'update']);
 
-Route::delete('/song/delete/{song}', [SongsController::class, 'delete']);
+Route::delete('/song/{song}', [SongsController::class, 'delete']);
 
 // Route::get('/music', function(){
 //     return new SongResource(Authors::finđ(4));
@@ -46,6 +46,4 @@ Route::post('/artist', [ArtistController::class, 'store']);
 
 Route::patch('/artist/{artist}', [ArtistController::class, 'update']);
 
-Route::delete('/artist/delete/{artist}', [ArtistController::class, 'destroy']);
-
-
+Route::delete('/artist/{artist}', [ArtistController::class, 'destroy']);

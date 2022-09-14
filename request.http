@@ -12,15 +12,15 @@ Content-Type: application/json
 
 }
 ###
-PATCH http://127.0.0.1:8000/api/songs/2
+PATCH http://127.0.0.1:8000/api/song/2
 Content-Type: application/json
+Accept: application/json
 
 {
     "name_song":"nhac",
-    "author":"Son",
     "liked":"900",
     "views":"999000",
-    "kind_music":"zxcv"
+    "category":"zxcv"
 
 }
 ###
@@ -33,3 +33,7 @@ Content-Type: application/json
     "email":"123456798@gmail.com"
 
 }
+###
+DELETE http://127.0.0.1:8000/api/artist/3
+Content-Type: application/json
+Accept: application/json

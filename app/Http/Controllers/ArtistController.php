@@ -76,8 +76,8 @@ class ArtistController extends Controller
      */
     public function update(UpdateArtistRequest $request, Artist $artist)
     {
-        $artist->update(['name'=>$request->input('name'), 'email'=>$request->input('email')]);
-       return $artist;
+        $artist->update(['name' => $request->input('name'), 'email' => $request->input('email')]);
+        return $artist;
     }
 
     /**
@@ -88,7 +88,7 @@ class ArtistController extends Controller
      */
     public function destroy(Artist $artist)
     {
-        $delete = Artist::find($artist)->delete();
+        $artist->delete();
         return 'Xóa tác giả thành công';
     }
 }
