@@ -1,0 +1,35 @@
+GET http://127.0.0.1:8000/api/songs
+###
+POST http://127.0.0.1:8000/api/songs
+Content-Type: application/json
+
+{
+    "name_song":"asdasd",
+    "author":"qwer",
+    "liked":"100",
+    "views":"1000",
+    "kind_music":"zxcv"
+
+}
+###
+PATCH http://127.0.0.1:8000/api/songs/2
+Content-Type: application/json
+
+{
+    "name_song":"nhac",
+    "author":"Son",
+    "liked":"900",
+    "views":"999000",
+    "kind_music":"zxcv"
+
+}
+###
+POST http://127.0.0.1:8000/api/authors
+Content-Type: application/json
+
+{
+    
+    "author":"asdasdasdasdsad",
+    "email":"123456798@gmail.com"
+
+}
