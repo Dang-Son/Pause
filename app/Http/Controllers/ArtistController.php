@@ -17,6 +17,7 @@ class ArtistController extends Controller
     {
         $listArtists = Artist::all();
 
+
         return $listArtists;
     }
 
@@ -90,5 +91,20 @@ class ArtistController extends Controller
     {
         $artist->delete();
         return 'Xóa tác giả thành công';
+    }
+
+
+    public function upload_image(Request $request)
+    {
+
+        $resizedImage = cloudinary()->upload($request->file('image')->getRealPath(), [
+            'folder' => 'uploads',
+            'transformation' => [
+                'width' => 100,
+                'height' => 100
+            ]
+        ])->getSecurePath();
+
+        dd($resizedImage);
     }
 }

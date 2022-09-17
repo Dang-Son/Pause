@@ -50,4 +50,19 @@ Route::patch('/artist/{artist}', [ArtistController::class, 'update']);
 
 
 
-Route::delete('/sdsdsd', [ArtistController::class, 'destroy']);
+Route::get('/upload', function () {
+    return view('upload');
+});
+
+Route::post('/upload', function (Request $request) {
+
+    if ($request->hasFile('image')) {
+
+        $file = $request->file('image');
+        $filename = $file->getClientOriginalName();
+        $path = storage_path() . '/uploads/';
+        return $file->move($path, $filename);
+    }
+
+    return response('Upload failed', 502);
+});
