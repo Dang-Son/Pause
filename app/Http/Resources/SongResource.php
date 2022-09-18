@@ -15,14 +15,17 @@ class SongResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=> $this->id,
-            'name_song'=> $this->name_song,
-            'author'=> $this->author,
-            'liked'=> $this->liked,
-            'views'=> $this->views,
-            'category'=> $this->category,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'id' => $this->id,
+            'type' => 'song',
+            'attributes' => [
+                'name_song' => $this->name_song,
+                'liked' => $this->liked,
+                'views' => $this->views,
+                'category' => $this->category,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
+            ],
+            'relationships' => []
         ];
     }
 }

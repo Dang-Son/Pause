@@ -1,9 +1,9 @@
-GET http://127.0.0.1:8000/api/song
+GET http://127.0.0.1:8000/api/song/
 Accept: application/json
 
 
 ###
-POST http://127.0.0.1:8000/api/songs
+POST http://127.0.0.1:8000/api/song
 Content-Type: application/json
 Accept: application/json
 
