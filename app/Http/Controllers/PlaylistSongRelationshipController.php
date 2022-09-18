@@ -69,9 +69,11 @@ class PlaylistSongRelationshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Playlist $playlist)
     {
-        //
+        $ids = $request->input('data.*.id');
+        $playlist->songs()->sync($ids);
+        return response(null, 204);
     }
 
     /**

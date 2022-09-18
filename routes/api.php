@@ -72,11 +72,13 @@ Route::post('/upload', function (Request $request) {
 
 
 
-
+Route::get('/playlist/', [PlaylistController::class, 'index']);
 Route::get('/playlist/{playlist}', [PlaylistController::class, 'show']);
 
 Route::get('playlist/{playlist}/relationships/songs', [PlaylistSongRelationshipController::class, 'index'])->name('playlist.relationships.songs');
 
+
+Route::patch('playlist/{playlist}/relationships/songs', [PlaylistSongRelationshipController::class, 'update'])->name('playlist.relationships.songs');
 
 Route::get('playlist/{playlist}/songs', function () {
     return true;

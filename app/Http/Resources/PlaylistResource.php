@@ -23,12 +23,12 @@ class PlaylistResource extends JsonResource
             ],
             'relationships' => [
                 'songs' => [
-                    // 'links' => [
-                    //     'self' => route('playlist.relationships.songs', ['id' => $this->id]),
-                    //     'related' => route('playlist.songs', ['id' => $this->id])
-                    // ],
+                    'links' => [
+                        'self' => route('playlist.relationships.songs', ['playlist' => $this->id]),
+                        'related' => route('playlist.songs', ['playlist' => $this->id])
+                    ],
                     'data' => [
-                        SongIdentifierResource::collection($this->songs)
+                        SongIdentifierResource::collection($this->whenLoaded('songs'))
                     ]
                 ]
             ]

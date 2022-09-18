@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Artist;
+use App\Models\Playlist;
 use App\Models\Song;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,11 +22,12 @@ class SongFactory extends Factory
     {
         $artist_id = Artist::factory()->create()->id;
         return [
-            'name_song'=>fake()->name(),
-            'liked'=>fake()->randomDigitNotNull(),
-            'views'=>fake()->randomDigitNotNull(),
-            'category'=>fake()->name(),
-            'artist_id'=>$artist_id
+            'name_song' => fake()->name(),
+            'liked' => fake()->randomDigitNotNull(),
+            'views' => fake()->randomDigitNotNull(),
+            'category' => fake()->name(),
+            'artist_id' => $artist_id,
+            'playlist_id' => Playlist::all()->random(1)->first(),
         ];
     }
 }

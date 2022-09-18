@@ -16,12 +16,16 @@ return new class extends Migration
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
             $table->string('name_song');
+
             $table->unsignedBigInteger('artist_id');
+            $table->unsignedBigInteger('playlist_id')->nullable();
+
             $table->integer('liked');
             $table->integer('views');
             $table->string('category');
             $table->timestamps();
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
+            $table->foreign('playlist_id')->references('id')->on('playlists')->onDelete('cascade');
         });
     }
 

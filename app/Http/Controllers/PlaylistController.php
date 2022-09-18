@@ -6,6 +6,7 @@ use App\Http\Requests\StorePlaylistRequest;
 use App\Http\Requests\UpdatePlaylistRequest;
 use App\Http\Resources\PlaylistResource;
 use App\Models\Playlist;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class PlaylistController extends Controller
 {
@@ -16,8 +17,8 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        //
-
+        $playlists = Playlist::all();
+        return PlaylistResource::collection($playlists);
     }
 
     /**
@@ -49,7 +50,13 @@ class PlaylistController extends Controller
      */
     public function show(Playlist $playlist)
     {
-        return new PlaylistResource($playlist);
+
+        $query = QueryBuilder::for(Playlist::where('id', $playlist->id))
+            ->allowedIncludes('songs')
+            ->firstOrFail();
+
+        // return $query;
+        return new PlaylistResource($query);
     }
 
     /**
