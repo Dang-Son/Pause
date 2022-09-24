@@ -11,9 +11,20 @@ class Song extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name_song','liked', 'views','category'];
+    protected $fillable = ['name_song', 'liked', 'views', 'category'];
 
-    public function song(){
+    public function artist()
+    {
         return $this->belongsTo(Artist::class);
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function history()
+    {
+        return $this->hasOne(History::class);
     }
 }
