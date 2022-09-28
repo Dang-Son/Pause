@@ -1,0 +1,29 @@
+GET http://127.0.0.1:8000/api/song
+###
+GET http://127.0.0.1:8000/api/song/3
+###
+POST http://127.0.0.1:8000/api/song
+Content-Type: application/json
+
+{
+    "name_song":"asdasd",
+    "artist":"qwer",
+    "liked":"100",
+    "views":"1000",
+    "category":"zxcv"
+
+}
+###
+
+PATCH http://127.0.0.1:8000/api/song/2
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name_song":"nhac",
+    "liked":"900",
+    "views":"999000",
+    "category":"zxcv"
+
+}
+###

@@ -1,0 +1,26 @@
+GET http://127.0.0.1:8000/api/artist
+###
+GET http://127.0.0.1:8000/api/artist/3
+###
+POST http://127.0.0.1:8000/api/artist
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name":"Dang Hai Hoang Son",
+    "email":"DangHaiHoangSon@gmail.com"
+
+}
+###
+PATCH http://127.0.0.1:8000/api/artist/3
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name":"Son Dang Hai Hoang",
+    "email":"Sondhh@gmai.com"
+}
+###
+DELETE http://127.0.0.1:8000/api/artist/5
+Content-Type: application/json
+Accept: application/json

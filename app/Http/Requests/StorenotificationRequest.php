@@ -13,7 +13,7 @@ class StorenotificationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

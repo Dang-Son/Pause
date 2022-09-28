@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
+use App\Models\Notification;
+use App\Models\Song;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,7 +13,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class NotificationFactory extends Factory
 {
-    protected $model = History::class;
+    protected $model = Notification::class;
     /**
      * Define the model's default state.
      *
@@ -18,7 +22,10 @@ class NotificationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'link' => fake()->name(),
+            'content' => fake()->name(),
+            'user_id' => User::all()->random(1)->first()->id,
+            'comment_id' => Comment::all()->random(1)->first()->id
         ];
     }
 }

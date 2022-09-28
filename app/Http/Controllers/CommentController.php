@@ -74,7 +74,7 @@ class CommentController extends Controller
      */
     public function update(UpdatecommentRequest $request, comment $comment)
     {
-        $comment->update(['content' => $request->input('content')]);
+        $comment->update(['content' => $request->input('content'), 'song_id' => $request->input('song_id'), 'user_id' => $request->input('user_id')]);
         return $comment;
     }
 

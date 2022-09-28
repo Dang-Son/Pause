@@ -13,7 +13,7 @@ class UpdatecommentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

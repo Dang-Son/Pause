@@ -15,6 +15,7 @@ class HistoryResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'listen' => $this->listen,
             'create_at' => $this->create_at,
         ];
     }

@@ -1,0 +1,18 @@
+GET http://127.0.0.1:8000/api/history
+###
+GET http://127.0.0.1:8000/api/history/3
+###
+POST http://127.0.0.1:8000/api/history
+Content-Type: application/json
+Accept: application/json
+
+{
+    "listen":"history duoc them"
+}
+
+<!--xem lai phan tao. moi'-->
+
+###
+DELETE http://127.0.0.1:8000/api/history/5
+Content-Type: application/json
+Accept: application/json

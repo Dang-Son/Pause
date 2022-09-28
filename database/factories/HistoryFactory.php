@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\History;
+use App\Models\Song;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +21,9 @@ class HistoryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'listen' => fake()->name(),
+            'user_id' => User::all()->random(1)->first()->id,
+            'song_id' => Song::all()->random(1)->first()->id,
         ];
     }
 }
