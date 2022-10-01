@@ -2,17 +2,16 @@ GET http://127.0.0.1:8000/api/comment
 ###
 GET http://127.0.0.1:8000/api/comment/2
 ###
-POST http://127.0.0.1:8000/api/comment
-Content-Type: application/json
-Accept: application/json
+POST http://127.0.0.1:8000/api/comment HTTP/1.1
+content-type: application/json
+accept: application/json
 
 {
-    "content":"day la data tao them",
-    "song_id":"1",
-    "user_id":"3" 
+    "content": "day la data tao them",
+    "song_id": "1",
+    "user_id": "3" 
 }
 
-<!--xem lai phan tao. moi'-->
 
 ###
 PATCH http://127.0.0.1:8000/api/comment/3
