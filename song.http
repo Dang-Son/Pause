@@ -41,10 +41,16 @@ GET  http://127.0.0.1:8000/api/song?include=playlists
 content-type: application/json
 accpet: application/json
 
-
 ###
 # get related resource with playlist 
 GET  http://127.0.0.1:8000/api/song/1
+content-type: application/json
+accpet: application/json
+
+
+###
+# get related resource with playlist 
+GET  http://127.0.0.1:8000/api/song?include=playlists
 content-type: application/json
 accpet: application/json
 

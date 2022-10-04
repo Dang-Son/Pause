@@ -28,3 +28,56 @@ content-type: application/json
 GET http://127.0.0.1:8000/api/playlist?page[size]=5&page[number]=1&sort=name
 accept: application/json
 content-type: application/json
+
+
+
+### 
+# Get all playlist sort by name
+GET http://127.0.0.1:8000/api/playlist?include=songs
+accept: application/json
+content-type: application/json
+
+
+
+### 
+# Get all playlist sort by name
+GET http://127.0.0.1:8000/api/playlist/1?include=songs
+accept: application/json
+content-type: application/json
+
+
+
+### 
+# Get all playlist sort by name
+PATCH  http://127.0.0.1:8000/api/playlist/1
+accept: application/json
+content-type: application/json
+
+{
+    "data" : {
+        "attributes" : {
+            "name" : "newPlaylist"
+        }
+    }
+}
+
+
+###
+
+
+### 
+# Get all playlist sort by name
+POST  http://127.0.0.1:8000/api/playlist
+accept: application/json
+content-type: application/json
+
+{
+    "data" : {
+        "attributes" : {
+            "name" : "newPlaylist2"
+        }
+    }
+}
+
+
+###
