@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +25,12 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(ArtistSeeder::class);
         $this->call(SongSeeder::class);
+        $this->call(PlaylistSeeder::class);
+
+        DB::table('playlist_song')->insert([
+
+            'playlist_id' => '1',
+            'song_id' => '1'
+        ]);
     }
 }

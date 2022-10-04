@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SongResource;
 use App\Models\Song;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class SongsController extends Controller
 {
     public function index()
     {
-        $listSongs = Song::all();
 
-        return $listSongs;
+        $songs = QueryBuilder::for(Song::class)->allowedIncludes(['playlists'])->get();
+        return SongResource::collection($songs);
     }
 
     public function show(Song $song)
     {
-        return $song;
+
+        $song = QueryBuilder::for(Song::where('id', $song->id))->allowedIncludes(['playlists'])->firstOrFail();
+
+        return new SongResource($song);
     }
 
     public function store(Request $request)

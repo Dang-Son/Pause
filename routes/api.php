@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SongsController;
 use App\Http\Controllers\ArtistController;
-
+use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\SongPlaylistRelatedController;
+use App\Http\Controllers\SongPlaylistRelationshipsController;
 use App\Http\Resources\SongResource as SongResource;
 use App\Models\Authors;
 
@@ -33,9 +35,6 @@ Route::patch('/song/{song}', [SongsController::class, 'update']);
 
 Route::delete('/song/{song}', [SongsController::class, 'delete']);
 
-// Route::get('/music', function(){
-//     return new SongResource(Authors::finđ(4));
-// });
 
 
 Route::get('/artist', [ArtistController::class, 'index']);
@@ -48,6 +47,16 @@ Route::patch('/artist/{artist}', [ArtistController::class, 'update']);
 
 // Route::delete('/artist/{artist}', [ArtistController::class, 'destroy']);
 
+// playlist
+Route::get('/playlist', [PlaylistController::class, 'index']);
+
+// get only relationship
+Route::get('song/{song}/relationships/playlist',  [SongPlaylistRelationshipsController::class, 'index'])->name('song.relationships.playlist');
+
+// update relationship
+Route::patch('song/{song}/relationships/playlist',  [SongPlaylistRelationshipsController::class, 'update'])->name('song.relationships.playlist');
 
 
-Route::delete('/sdsdsd', [ArtistController::class, 'destroy']);
+
+// related
+Route::get('song/{song}/playlist', [SongPlaylistRelatedController::class, 'index'])->name('song.playlist');
