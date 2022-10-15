@@ -36,15 +36,6 @@ Route::post('/song', [SongsController::class, 'store']);
 Route::patch('/song/{song}', [SongsController::class, 'update']);
 Route::delete('/song/{song}', [SongsController::class, 'delete']);
 
-// Route::apiResource('/song', SongResource::class)->only([
-//     'index', 'show', 'store', 'update', 'delete'
-// ]);
-
-// Route::get('/song', function () {
-//     return new SongResource(Song::all());
-// });
-
-
 
 
 Route::get('/artist', [ArtistController::class, 'index']);
@@ -53,24 +44,12 @@ Route::post('/artist', [ArtistController::class, 'store']);
 Route::patch('/artist/{artist}', [ArtistController::class, 'update']);
 Route::delete('/artist/{artist}', [ArtistController::class, 'destroy']);
 
-// Route::apiResource('/artist', AritistResource::class)->only([
-//     'index', 'show', 'store', 'update', 'destroy'
-// ]);
-
-
-
 
 Route::get('/comment', [CommentController::class, 'index']);
 Route::get('/comment/{comment}', [CommentController::class, 'show']);
 Route::post('/comment', [CommentController::class, 'store']);
 Route::patch('/comment/{comment}', [CommentController::class, 'update']);
 Route::delete('/comment/{comment}', [CommentController::class, 'destroy']);
-
-// Route::apiResource('/comment', CommentResource::class)->only([
-//     'index', 'show', 'update', 'destroy'
-// ]);
-
-
 
 
 Route::get('/notification', [NotificationController::class, 'index']);
@@ -79,10 +58,6 @@ Route::post('/notification', [NotificationController::class, 'store']);
 Route::patch('/notification/{notification}', [NotificationController::class, 'update']);
 Route::delete('/notification/{notification}', [NotificationController::class, 'destroy']);
 
-
-// Route::apiResource('/notification', NotificationResource::class)->only([
-//     'index', 'show', 'store', 'update', 'destroy'
-// ]);
 
 
 Route::get('/history', [HistoryController::class, 'index']);
