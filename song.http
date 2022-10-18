@@ -1,0 +1,61 @@
+# get song with playlist 
+GET http://127.0.0.1:8000/api/song/1/relationships/playlist
+Content-Type: application/json
+Accept: application/json
+
+
+###
+# update song to playlist relationships 
+PATCH  http://127.0.0.1:8000/api/song/1/relationships/playlist
+content-type: application/json
+accpet: application/json
+
+{
+    "id" : [
+        "1", "2","3"
+    ]
+}
+
+
+###
+# update song with playlist 
+PATCH  http://127.0.0.1:8000/api/song/1/relationships/playlist
+content-type: application/json
+accpet: application/json
+
+{
+    "id" : []
+}
+
+
+###
+# get related resource with playlist 
+GET  http://127.0.0.1:8000/api/song/1/playlist
+content-type: application/json
+accpet: application/json
+
+
+###
+# get related resource with playlist 
+GET  http://127.0.0.1:8000/api/song?include=playlists
+content-type: application/json
+accpet: application/json
+
+###
+# get related resource with playlist 
+GET  http://127.0.0.1:8000/api/song/1
+content-type: application/json
+accpet: application/json
+
+
+###
+# get related resource with playlist 
+GET  http://127.0.0.1:8000/api/song?include=playlists
+content-type: application/json
+accpet: application/json
+
+
+
+
+
+

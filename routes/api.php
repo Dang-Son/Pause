@@ -7,6 +7,9 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\SongPlaylistRelatedController;
+use App\Http\Controllers\SongPlaylistRelationshipsController;
 use App\Http\Resources\AritistResource;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\HistoryResource;
@@ -58,6 +61,10 @@ Route::post('/notification', [NotificationController::class, 'store']);
 Route::patch('/notification/{notification}', [NotificationController::class, 'update']);
 Route::delete('/notification/{notification}', [NotificationController::class, 'destroy']);
 
+// playlist
+Route::get('/playlist', [PlaylistController::class, 'index']);
+Route::patch('/playlist/{playlist}', [PlaylistController::class, 'update']);
+Route::post('/playlist', [PlaylistController::class, 'store']);
 
 
 Route::get('/history', [HistoryController::class, 'index']);

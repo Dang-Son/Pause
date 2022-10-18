@@ -8,6 +8,7 @@ use App\Models\Artist;
 use App\Models\Comment;
 use App\Models\History;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
 
         $this->call(SongSeeder::class);
+        $this->call(PlaylistSeeder::class);
+
+        DB::table('playlist_song')->insert([
+
+            'playlist_id' => '1',
+            'song_id' => '1'
+        ]);
         $this->call(ArtistSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(HistorySeeder::class);

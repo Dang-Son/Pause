@@ -1,0 +1,83 @@
+# Get all playlist
+GET http://127.0.0.1:8000/api/playlist
+accept: application/json
+content-type: application/json
+
+### 
+# Get all playlist sort by name
+GET http://127.0.0.1:8000/api/playlist?sort=name
+accept: application/json
+content-type: application/json
+
+### 
+# Get all playlist sort by name - reverse
+GET http://127.0.0.1:8000/api/playlist?sort=-name
+accept: application/json
+content-type: application/json
+
+### 
+# Get all playlist sort by name AND id 
+GET http://127.0.0.1:8000/api/playlist?sort=name,id
+accept: application/json
+content-type: application/json
+
+
+
+### 
+# Get all playlist sort with pagination and sort by name
+GET http://127.0.0.1:8000/api/playlist?page[size]=5&page[number]=1&sort=name
+accept: application/json
+content-type: application/json
+
+
+
+### 
+# Get all playlist sort by name
+GET http://127.0.0.1:8000/api/playlist?include=songs
+accept: application/json
+content-type: application/json
+
+
+
+### 
+# Get all playlist sort by name
+GET http://127.0.0.1:8000/api/playlist/1?include=songs
+accept: application/json
+content-type: application/json
+
+
+
+### 
+# Get all playlist sort by name
+PATCH  http://127.0.0.1:8000/api/playlist/1
+accept: application/json
+content-type: application/json
+
+{
+    "data" : {
+        "attributes" : {
+            "name" : "newPlaylist"
+        }
+    }
+}
+
+
+###
+
+
+### 
+# Get all playlist sort by name
+POST  http://127.0.0.1:8000/api/playlist
+accept: application/json
+content-type: application/json
+
+{
+    "data" : {
+        "attributes" : {
+            "name" : "newPlaylist2"
+        }
+    }
+}
+
+
+###
