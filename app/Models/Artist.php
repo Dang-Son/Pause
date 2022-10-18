@@ -11,7 +11,8 @@ class Artist extends Model
 
     protected $fillable = ['name', 'email'];
 
-    public function artist(){
+    public function songs()
+    {
         return $this->hasMany(Song::class);
     }
 }

@@ -31,7 +31,7 @@ class SongsController extends Controller
 
     public function update(Request $request, Song $song)
     {
-        $song->update(['name_song' => $request->input('name_song'), 'category' => $request->input('category'), 'liked' => $request->input('liked'), 'views' => $request->input('views')]);
+        $song->update(['name' => $request->input('name'), 'category' => $request->input('category'), 'liked' => $request->input('liked'), 'views' => $request->input('views')]);
         return $song;
     }
 
