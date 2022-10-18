@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artist;
 use App\Http\Requests\StoreArtistRequest;
 use App\Http\Requests\UpdateArtistRequest;
+use App\Http\Resources\ArtistResource;
 
 class ArtistController extends Controller
 {
@@ -15,9 +16,9 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $listArtists = Artist::all();
+        $listArtists = QueryBuilder::for(Artist::class)->allowedIncludes(['users'])->allowedSorts(['name', 'followed'])->jsonPaginate();
 
-        return $listArtists;
+        return ArtistResource::collection($listArtists);
     }
 
     /**
@@ -38,11 +39,8 @@ class ArtistController extends Controller
      */
     public function store(StoreArtistRequest $request)
     {
-        $artist = Artist::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-        ]);
-        return $artist;
+        $artist = Song::create($request->input(("data.attributes")));
+        return ArtistResource::collection($artist);
     }
 
     /**
@@ -53,7 +51,8 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        return $artist;
+        $artist = QueryBuilder::for(Artist::where('id', $artist->id))->allowedIncludes(['users'])->firstOrFail();
+        return new ArtistResource($artist);
     }
 
     /**
@@ -76,7 +75,7 @@ class ArtistController extends Controller
      */
     public function update(UpdateArtistRequest $request, Artist $artist)
     {
-        $artist->update(['name' => $request->input('name'), 'email' => $request->input('email')]);
+        $artist->update(['name' => $request->input('name'), 'followed' => $request->input('followed')]);
         return $artist;
     }
 

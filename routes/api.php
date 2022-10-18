@@ -66,9 +66,24 @@ Route::get('/playlist', [PlaylistController::class, 'index']);
 Route::patch('/playlist/{playlist}', [PlaylistController::class, 'update']);
 Route::post('/playlist', [PlaylistController::class, 'store']);
 
+// playlist
+Route::get('/playlist/{playlist}', [PlaylistController::class, 'show']);
+
+// get only relationship
+Route::get('song/{song}/relationships/playlist',  [SongPlaylistRelationshipsController::class, 'index'])->name('song.relationships.playlist');
+
+// update relationship
+Route::patch('song/{song}/relationships/playlist',  [SongPlaylistRelationshipsController::class, 'update'])->name('song.relationships.playlist');
+
 
 Route::get('/history', [HistoryController::class, 'index']);
 Route::get('/history/{history}', [HistoryController::class, 'show']);
 // Route::post('/history', [HistoryController::class, 'store']);
 Route::patch('/history/{history}', [HistoryController::class, 'update']);
 Route::delete('/history/{history}', [HistoryController::class, 'destroy']);
+
+
+
+
+// related
+Route::get('song/{song}/playlist', [SongPlaylistRelatedController::class, 'index'])->name('song.playlist');

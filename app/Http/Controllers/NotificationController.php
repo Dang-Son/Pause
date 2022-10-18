@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\notification;
 use App\Http\Requests\StorenotificationRequest;
 use App\Http\Requests\UpdatenotificationRequest;
+use App\Http\Resources\NotificationResource;
 
 class NotificationController extends Controller
 {
@@ -15,8 +16,8 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $listNoti = Notification::all();
-        return $listNoti;
+        $notifications = QueryBuilder::for(notification::class)->allowedIncludes(['users'])->allowedSorts(['id'])->jsonPaginate();
+        return NotificationResource::collection($notifications);
     }
 
     /**
@@ -48,7 +49,8 @@ class NotificationController extends Controller
      */
     public function show(notification $notification)
     {
-        return $notification;
+        $notification = QueryBuilder::for(notification::where('id', $notification->id))->allowedIncludes(['users'])->firstOrFail();
+        return new NotificationResource($notification);
     }
 
     /**

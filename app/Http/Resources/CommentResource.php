@@ -15,10 +15,24 @@ class CommentResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'content' => $this->content,
-            'song_id' => $this->song_id,
-            'user_id' => $this->user_id,
-            'create_at' => $this->create_at
+            'id' => $this->id,
+            'type' => 'comment',
+            'attributes' => [
+                'content' => $this->content,
+            ],
+
+            'relationships' => [
+                'user' => [
+                    'links' => [],
+                    'data' => [],
+                ],
+                'song' => [
+                    'links' => [],
+                    'data' => SongResource::collection($this->whenLoaded('songs')),
+                ],
+            ],
+            'create_at' => $this->create_at,
+            'update_at' => $this->update_at
         ];
     }
 }

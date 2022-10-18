@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\History;
 use App\Http\Requests\StoreHistoryRequest;
 use App\Http\Requests\UpdateHistoryRequest;
+use App\Http\Resources\HistoryResource;
+use Database\Factories\HistoryFactory;
 
 class HistoryController extends Controller
 {
@@ -15,10 +17,9 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $listHistories = History::all();
-        return $listHistories;
+        $historys = QueryBuilder::for(History::class)->allowedIncludes(['users'])->allowedSorts(['id'])->jsonPaginate();
+        return HistoryResource::collection($historys);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -47,7 +48,8 @@ class HistoryController extends Controller
      */
     public function show(History $history)
     {
-        return $history;
+        $history = QueryBuilder::for(History::where('id', $history->id))->allowedIncludes(['users'])->firstOrFail();
+        return new HistoryResource($history);
     }
 
     /**

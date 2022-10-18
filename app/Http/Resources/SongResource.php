@@ -32,7 +32,11 @@ class SongResource extends JsonResource
                         'related' => route('song.playlist', ['song' => $this->id])
                     ],
                     'data' => PlaylistResource::collection($this->whenLoaded('playlists'))
-                ]
+                ],
+                'artist' => [
+                    'links' => [],
+                    'data' => ArtistResource::collection($this->whenLoaded('artists'))
+                ],
             ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

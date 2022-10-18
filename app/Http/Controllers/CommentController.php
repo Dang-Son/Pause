@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorecommentRequest;
 use App\Http\Requests\UpdatecommentRequest;
+use App\Http\Resources\CommentResource;
 use App\Models\Comment;
 
 class CommentController extends Controller
@@ -15,9 +16,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $listComments = Comment::all();
-
-        return $listComments;
+        $comments = QueryBuilder::for(Comment::class)->allowedIncludes(['users'])->allowedSorts(['id'])->jsonPaginate();
+        return CommentResource::collection($comments);
     }
 
     /**
@@ -37,9 +37,7 @@ class CommentController extends Controller
      */
     public function store(StorecommentRequest $request)
     {
-        $comment = Comment::create([
-            'content' => $request->input('content'),
-        ]);
+        $comment = Comment::create($request->input(("data.attributes")));
         return $comment;
     }
 
@@ -51,7 +49,8 @@ class CommentController extends Controller
      */
     public function show(comment $comment)
     {
-        return $comment;
+        $comment = QueryBuilder::for(Comment::where('id', $comment->id))->allowedIncludes(['users'])->firstOrFail();
+        return new CommentResource($comment);
     }
 
     /**
@@ -74,7 +73,7 @@ class CommentController extends Controller
      */
     public function update(UpdatecommentRequest $request, comment $comment)
     {
-        $comment->update(['content' => $request->input('content'), 'song_id' => $request->input('song_id'), 'user_id' => $request->input('user_id')]);
+        $comment->update(['content' => $request->input('content')]);
         return $comment;
     }
 
