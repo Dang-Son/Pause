@@ -6,6 +6,7 @@ use App\Models\notification;
 use App\Http\Requests\StorenotificationRequest;
 use App\Http\Requests\UpdatenotificationRequest;
 use App\Http\Resources\NotificationResource;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class NotificationController extends Controller
 {

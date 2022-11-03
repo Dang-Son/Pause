@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Notification::class);
     }
+
+    public function artist()
+    {
+        return $this->hasOne(Artist::class);
+    }
 }

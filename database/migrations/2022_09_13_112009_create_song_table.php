@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('artist');
             $table->unsignedBigInteger('artist_id');
             $table->integer('liked');
             $table->integer('views');

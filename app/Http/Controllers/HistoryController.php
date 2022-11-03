@@ -7,6 +7,7 @@ use App\Http\Requests\StoreHistoryRequest;
 use App\Http\Requests\UpdateHistoryRequest;
 use App\Http\Resources\HistoryResource;
 use Database\Factories\HistoryFactory;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class HistoryController extends Controller
 {

@@ -6,6 +6,7 @@ use App\Models\Artist;
 use App\Http\Requests\StoreArtistRequest;
 use App\Http\Requests\UpdateArtistRequest;
 use App\Http\Resources\ArtistResource;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ArtistController extends Controller
 {
@@ -16,7 +17,7 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $listArtists = QueryBuilder::for(Artist::class)->allowedIncludes(['users'])->allowedSorts(['name', 'followed'])->jsonPaginate();
+        $listArtists = QueryBuilder::for(Artist::class)->allowedIncludes(['songs', 'users'])->allowedSorts(['name', 'followed'])->jsonPaginate();
 
         return ArtistResource::collection($listArtists);
     }
@@ -39,7 +40,7 @@ class ArtistController extends Controller
      */
     public function store(StoreArtistRequest $request)
     {
-        $artist = Song::create($request->input(("data.attributes")));
+        $artist = Artist::create($request->input(("data.attributes")));
         return ArtistResource::collection($artist);
     }
 

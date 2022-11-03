@@ -18,8 +18,8 @@ class SongResource extends JsonResource
             'id' => $this->id,
             'type' => 'song',
             'attributes' => [
-                'name_song' => $this->name_song,
-                'author' => $this->author,
+                'name' => $this->name,
+                'artist' => $this->artist,
                 'liked' => $this->liked,
                 'views' => $this->views,
                 'category' => $this->category,

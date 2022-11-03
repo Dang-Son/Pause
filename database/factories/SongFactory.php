@@ -22,6 +22,7 @@ class SongFactory extends Factory
         $artist_id = Artist::factory()->create()->id;
         return [
             'name' => fake()->name(),
+            'artist' => fake()->name(),
             'liked' => fake()->randomDigitNotNull(),
             'views' => fake()->randomDigitNotNull(),
             'category' => fake()->name(),

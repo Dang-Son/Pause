@@ -6,6 +6,7 @@ use App\Http\Requests\StorecommentRequest;
 use App\Http\Requests\UpdatecommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class CommentController extends Controller
 {

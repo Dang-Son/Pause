@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Artist;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,10 +19,11 @@ class ArtistFactory extends Factory
      */
     public function definition()
     {
+        $user_id = User::factory()->create()->id;
         return [
             'name' => fake()->name(),
-            'followed' => fake()->followed(),
-
+            'followed' => fake()->randomDigitNotNull(),
+            'user_id' => $user_id
         ];
     }
 }
