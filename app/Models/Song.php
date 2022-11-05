@@ -13,7 +13,7 @@ class Song extends Model
 
     protected $fillable = ['name', 'artist', 'liked', 'views', 'category'];
 
-    public function artist()
+    public function artists()
     {
         return $this->belongsTo(Artist::class);
     }
