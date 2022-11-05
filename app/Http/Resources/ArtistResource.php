@@ -19,17 +19,18 @@ class ArtistResource extends JsonResource
             'type' => 'artist',
             'attributes' => [
                 'name' => $this->name,
-                'followed' => $this->followed
+                'followed' => $this->followed,
+                'user_id' => $this->user_id,
             ],
 
             'relationships' => [
-                'user' => [
+                'users' => [
                     'links' => [],
-                    'data' => [],
+                    'data' => new UserResource($this->whenLoaded('user')),
                 ]
             ],
-            'create_at' => $this->create_at,
-            'update_at' => $this->update_at
+            'create_at' => $this->created_at,
+            'update_at' => $this->updated_at
         ];
     }
 }

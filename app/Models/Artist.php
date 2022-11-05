@@ -9,7 +9,14 @@ class Artist extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'followed'];
+    protected $fillable = ['name', 'followed', 'user_id'];
+
+
+    // Default value 
+    protected $attributes = [
+        'followed' => 0,
+    ];
+
 
     public function songs()
     {

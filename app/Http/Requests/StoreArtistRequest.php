@@ -23,9 +23,7 @@ class StoreArtistRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|string',
-            'email' => 'email:rfc,dns'
-        ];
+
+        return [];
     }
 }
