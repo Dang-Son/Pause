@@ -17,7 +17,14 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $listArtists = QueryBuilder::for(Artist::class)->allowedIncludes(['songs', 'users'])->allowedSorts(['name', 'followed'])->jsonPaginate();
+        $listArtists = QueryBuilder::for(Artist::class)
+            ->allowedIncludes(['songs', 'user'])
+            ->allowedSorts(['name', 'followed'])
+            ->jsonPaginate();
+
+
+        // \Log::info("LOGGING EXAMPLE");
+
 
         return ArtistResource::collection($listArtists);
     }
@@ -40,8 +47,10 @@ class ArtistController extends Controller
      */
     public function store(StoreArtistRequest $request)
     {
+
+
         $artist = Artist::create($request->input(("data.attributes")));
-        return ArtistResource::collection($artist);
+        return new ArtistResource($artist);
     }
 
     /**
@@ -52,7 +61,10 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        $artist = QueryBuilder::for(Artist::where('id', $artist->id))->allowedIncludes(['users'])->firstOrFail();
+
+        $artist = QueryBuilder::for(Artist::where('id', $artist->id))
+            ->allowedIncludes(['user'])
+            ->firstOrFail();
         return new ArtistResource($artist);
     }
 
@@ -76,7 +88,9 @@ class ArtistController extends Controller
      */
     public function update(UpdateArtistRequest $request, Artist $artist)
     {
-        $artist->update(['name' => $request->input('name'), 'followed' => $request->input('followed')]);
+        $artist->update(
+            $request->input(("data.attributes"))
+        );
         return $artist;
     }
 
