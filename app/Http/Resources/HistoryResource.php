@@ -28,11 +28,11 @@ class HistoryResource extends JsonResource
                 ],
                 'songs' => [
                     'links' => [],
-                    'data' => SongResource::collection($this->whenLoaded('songs')),
+                    'data' => new SongResource($this->whenLoaded('song')),
                 ],
             ],
-            'create_at' => $this->create_at,
-            'update_at' => $this->update_at
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

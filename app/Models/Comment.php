@@ -24,4 +24,9 @@ class Comment extends Model
     {
         return $this->hasOne(Notification::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo((User::class));
+    }
 }

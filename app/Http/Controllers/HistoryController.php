@@ -18,7 +18,10 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $historys = QueryBuilder::for(History::class)->allowedIncludes(['users'])->allowedSorts(['id'])->jsonPaginate();
+        $historys = QueryBuilder::for(History::class)
+            ->allowedIncludes(['user', 'song'])
+            ->allowedSorts(['id'])
+            ->jsonPaginate();
         return HistoryResource::collection($historys);
     }
     /**
@@ -49,7 +52,9 @@ class HistoryController extends Controller
      */
     public function show(History $history)
     {
-        $history = QueryBuilder::for(History::where('id', $history->id))->allowedIncludes(['users'])->firstOrFail();
+        $history = QueryBuilder::for(History::where('id', $history->id))
+            ->allowedIncludes(['user', 'song'])
+            ->firstOrFail();
         return new HistoryResource($history);
     }
 

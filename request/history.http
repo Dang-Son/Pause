@@ -10,9 +10,15 @@ Accept: application/json
     "listen":"history duoc them"
 }
 
-<!--xem lai phan tao. moi'-->
-
 ###
 DELETE http://127.0.0.1:8000/api/history/5
 Content-Type: application/json
 Accept: application/json
+###
+GET http://127.0.0.1:8000/api/history/3?include=user
+accept: application/json
+content-type: application/json
+###
+GET http://127.0.0.1:8000/api/history?include=user
+accept: application/json
+content-type: application/json

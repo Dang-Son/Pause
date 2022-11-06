@@ -17,7 +17,10 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = QueryBuilder::for(Comment::class)->allowedIncludes(['users'])->allowedSorts(['id'])->jsonPaginate();
+        $comments = QueryBuilder::for(Comment::class)
+            ->allowedIncludes(['user', 'song'])
+            ->allowedSorts(['id', 'content'])
+            ->jsonPaginate();
         return CommentResource::collection($comments);
     }
 
@@ -39,7 +42,7 @@ class CommentController extends Controller
     public function store(StorecommentRequest $request)
     {
         $comment = Comment::create($request->input(("data.attributes")));
-        return $comment;
+        return new CommentResource($comment);
     }
 
     /**
@@ -50,7 +53,7 @@ class CommentController extends Controller
      */
     public function show(comment $comment)
     {
-        $comment = QueryBuilder::for(Comment::where('id', $comment->id))->allowedIncludes(['users'])->firstOrFail();
+        $comment = QueryBuilder::for(Comment::where('id', $comment->id))->allowedIncludes(['user', 'song'])->firstOrFail();
         return new CommentResource($comment);
     }
 

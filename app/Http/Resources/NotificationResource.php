@@ -25,15 +25,15 @@ class NotificationResource extends JsonResource
             'relationships' => [
                 'user' => [
                     'links' => [],
-                    'data' => [],
+                    'data' => new UserResource(($this->whenLoaded('user'))),
                 ],
                 'comment' => [
                     'links' => [],
-                    'data' => CommentResource::collection($this->whenLoaded('comments')),
+                    'data' => new CommentResource($this->whenLoaded('comment')),
                 ],
             ],
-            'create_at' => $this->create_at,
-            'update_at' => $this->update_at,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

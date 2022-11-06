@@ -17,7 +17,10 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $notifications = QueryBuilder::for(notification::class)->allowedIncludes(['users'])->allowedSorts(['id'])->jsonPaginate();
+        $notifications = QueryBuilder::for(notification::class)
+            ->allowedIncludes(['user', 'comment'])
+            ->allowedSorts(['id'])
+            ->jsonPaginate();
         return NotificationResource::collection($notifications);
     }
 
@@ -50,7 +53,9 @@ class NotificationController extends Controller
      */
     public function show(notification $notification)
     {
-        $notification = QueryBuilder::for(notification::where('id', $notification->id))->allowedIncludes(['users'])->firstOrFail();
+        $notification = QueryBuilder::for(notification::where('id', $notification->id))
+            ->allowedIncludes(['user', 'comment'])
+            ->firstOrFail();
         return new NotificationResource($notification);
     }
 

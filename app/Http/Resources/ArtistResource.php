@@ -24,13 +24,13 @@ class ArtistResource extends JsonResource
             ],
 
             'relationships' => [
-                'users' => [
+                'user' => [
                     'links' => [],
                     'data' => new UserResource($this->whenLoaded('user')),
                 ]
             ],
-            'create_at' => $this->created_at,
-            'update_at' => $this->updated_at
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }
