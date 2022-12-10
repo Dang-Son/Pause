@@ -16,20 +16,12 @@ class PlaylistResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'type' => 'playlist',
+            'type' => 'song',
             'attributes' => [
                 'name' => $this->name,
             ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-
-
-            'relationships' => [
-                'songs' => [
-                    'links' => [],
-                    'data' => SongResource::collection($this->whenLoaded('songs'))
-                ]
-            ],
         ];
     }
 }

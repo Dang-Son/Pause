@@ -49,12 +49,6 @@ Route::patch('/artist/{artist}', [ArtistController::class, 'update']);
 
 // playlist
 Route::get('/playlist', [PlaylistController::class, 'index']);
-Route::patch('/playlist/{playlist}', [PlaylistController::class, 'update']);
-Route::post('/playlist', [PlaylistController::class, 'store']);
-
-
-// playlist
-Route::get('/playlist/{playlist}', [PlaylistController::class, 'show']);
 
 // get only relationship
 Route::get('song/{song}/relationships/playlist',  [SongPlaylistRelationshipsController::class, 'index'])->name('song.relationships.playlist');
