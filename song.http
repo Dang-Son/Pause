@@ -37,20 +37,20 @@ accpet: application/json
 
 ###
 # get related resource with playlist 
-GET  http://127.0.0.1:8000/api/song?include=playlists
+GET  http://127.0.0.1:8000/api/song?include=playlists,artist
 content-type: application/json
 accpet: application/json
 
 ###
 # get related resource with playlist 
-GET  http://127.0.0.1:8000/api/song/1
+GET  http://127.0.0.1:8000/api/song/1?include=playlists,artist
 content-type: application/json
 accpet: application/json
 
 
 ###
 # get related resource with playlist 
-GET  http://127.0.0.1:8000/api/song?include=playlists
+GET  http://127.0.0.1:8000/api/song?include=playlists,artist
 content-type: application/json
 accpet: application/json
 

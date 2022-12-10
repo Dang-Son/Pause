@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Artist;
 use App\Http\Requests\StoreArtistRequest;
 use App\Http\Requests\UpdateArtistRequest;
+use App\Http\Resources\ArtistResource;
+use App\Http\Resources\SongResource;
+use Illuminate\Support\Facades\Log;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ArtistController extends Controller
 {
@@ -15,9 +19,11 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $listArtists = Artist::all();
-
-        return $listArtists;
+        $songs = QueryBuilder::for(Artist::class)
+            ->allowedIncludes(['songs'])
+            ->allowedSorts(['name', 'id'])
+            ->jsonPaginate();
+        return ArtistResource::collection($songs);
     }
 
     /**
@@ -53,7 +59,10 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        return $artist;
+        $artist = QueryBuilder::for(Artist::where('id', $artist->id))
+            ->allowedIncludes(['songs'])
+            ->firstOrFail();
+        return new ArtistResource($artist);
     }
 
     /**

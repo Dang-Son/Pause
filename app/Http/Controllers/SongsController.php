@@ -12,14 +12,21 @@ class SongsController extends Controller
     public function index()
     {
 
-        $songs = QueryBuilder::for(Song::class)->allowedIncludes(['playlists'])->allowedSorts(['name', 'id'])->jsonPaginate();
+        $songs = QueryBuilder::for(Song::class)
+            ->allowedIncludes(
+                ['playlists', 'artist']
+            )->allowedSorts(
+                ['name', 'id']
+            )->jsonPaginate();
         return SongResource::collection($songs);
     }
 
     public function show(Song $song)
     {
 
-        $song = QueryBuilder::for(Song::where('id', $song->id))->allowedIncludes(['playlists'])->firstOrFail();
+        $song = QueryBuilder::for(Song::where('id', $song->id))
+            ->allowedIncludes(['playlists', 'artist'])
+            ->firstOrFail();
         return new SongResource($song);
     }
 
