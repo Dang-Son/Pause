@@ -11,9 +11,9 @@ class Song extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name_song', 'liked', 'views', 'category'];
+    protected $fillable = ['name_song', 'liked', 'views', 'category', 'artist_id'];
 
-    public function song()
+    public function artist()
     {
         return $this->belongsTo(Artist::class);
     }
@@ -22,5 +22,12 @@ class Song extends Model
     public function playlists()
     {
         return $this->belongsToMany(Playlist::class);
+    }
+
+
+    // Like songs
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

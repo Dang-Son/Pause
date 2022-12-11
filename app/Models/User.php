@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'type',
     ];
 
     /**
@@ -41,4 +42,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'type' => 'audience',
+    ];
+
+    /**
+     * Get liked songs for each user
+     */
+    public function songs()
+    {
+        return $this->belongsToMany(Song::class);
+    }
+
+    /**
+     * Get liked playlists for each user
+     */
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class);
+    }
 }

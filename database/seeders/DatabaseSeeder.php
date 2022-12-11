@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -32,5 +32,9 @@ class DatabaseSeeder extends Seeder
             'playlist_id' => '1',
             'song_id' => '1'
         ]);
+
+        // Call liked songs and playlists seeder
+        $this->call(LikedSongSeeder::class);
+        $this->call(LikedPlaylistSeeder::class);
     }
 }
