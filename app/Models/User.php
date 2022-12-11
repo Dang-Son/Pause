@@ -52,4 +52,20 @@ class User extends Authenticatable
     protected $attributes = [
         'type' => 'audience',
     ];
+
+    /**
+     * Get liked songs for each user
+     */
+    public function songs()
+    {
+        return $this->belongsToMany(Song::class);
+    }
+
+    /**
+     * Get liked playlists for each user
+     */
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class);
+    }
 }

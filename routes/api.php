@@ -4,11 +4,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SongsController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\LikedPlaylistUserController;
+use App\Http\Controllers\LikedSongUserController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SongPlaylistRelatedController;
 use App\Http\Controllers\SongPlaylistRelationshipsController;
+use App\Http\Controllers\UserController;
 use App\Http\Resources\SongResource as SongResource;
 use App\Models\Authors;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +25,32 @@ use App\Models\Authors;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// TODO: Need to revert this later
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/user',  [UserController::class, 'index']);
+Route::get('/user/{user}',  [UserController::class, 'show']);
+
+// <------- PROFILE PAGE ------------>
+
+// get only relationship for user
+Route::get('user/{user}/relationships/songs',  [LikedSongUserController::class, 'index']);
+
+// update relationship - also include delete
+Route::patch('user/{user}/relationships/songs',  [LikedSongUserController::class, 'update']);
+
+
+// get only relationship for user
+Route::get('user/{user}/relationships/playlists',  [LikedPlaylistUserController::class, 'index']);
+
+// update relationship - also include delete
+Route::patch('user/{user}/relationships/playlists',  [LikedPlaylistUserController::class, 'update']);
+
+// <------- END PROFILE PAGE ------------>
+
+
 
 Route::get('/song', [SongsController::class, 'index']);
 
@@ -59,7 +86,7 @@ Route::get('/playlist/{playlist}', [PlaylistController::class, 'show']);
 // get only relationship
 Route::get('song/{song}/relationships/playlist',  [SongPlaylistRelationshipsController::class, 'index'])->name('song.relationships.playlist');
 
-// update relationship
+// update relationship - also include delete
 Route::patch('song/{song}/relationships/playlist',  [SongPlaylistRelationshipsController::class, 'update'])->name('song.relationships.playlist');
 
 

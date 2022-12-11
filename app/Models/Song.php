@@ -23,4 +23,11 @@ class Song extends Model
     {
         return $this->belongsToMany(Playlist::class);
     }
+
+
+    // Like songs
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

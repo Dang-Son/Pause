@@ -1,0 +1,48 @@
+GET http://127.0.0.1:8000/api/user?include=songs,playlists
+Content-Type: application/json
+Accept: application/json
+
+### Get 
+GET http://127.0.0.1:8000/api/user/1?include=songs
+Content-Type: application/json
+Accept: application/json
+
+
+
+
+### Get 
+GET http://127.0.0.1:8000/api/user/1?include=playlists
+Content-Type: application/json
+Accept: application/json
+
+
+
+### Update liked songs user
+PATCH  http://127.0.0.1:8000/api/user/1/relationships/playlists
+Content-Type: application/json
+Accept: application/json
+
+{
+    "id" : [
+        "1", "2"
+    ]
+}
+
+
+
+### Update liked songs user
+PATCH  http://127.0.0.1:8000/api/user/1/relationships/songs
+Content-Type: application/json
+Accept: application/json
+
+
+
+
+### Update liked songs user
+GET  http://127.0.0.1:8000/api/user/1/relationships/playlists
+Content-Type: application/json
+Accept: application/json
+
+
+
+

@@ -32,5 +32,9 @@ class DatabaseSeeder extends Seeder
             'playlist_id' => '1',
             'song_id' => '1'
         ]);
+
+        // Call liked songs and playlists seeder
+        $this->call(LikedSongSeeder::class);
+        $this->call(LikedPlaylistSeeder::class);
     }
 }
