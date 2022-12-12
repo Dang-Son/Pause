@@ -5,22 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artist extends Model
+class History extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'followed', 'user_id'];
-
-
-    // Default value 
-    protected $attributes = [
-        'followed' => 0,
-    ];
-
-
-    public function songs()
+    public function song()
     {
-        return $this->hasMany(Song::class);
+        return $this->belongsTo(Song::class);
     }
 
     public function user()

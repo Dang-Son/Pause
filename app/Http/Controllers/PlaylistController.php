@@ -76,7 +76,7 @@ class PlaylistController extends Controller
     public function update(UpdatePlaylistRequest $request, Playlist $playlist)
     {
         $playlist->update($request->input('data.attributes'));
-        return $playlist;
+        return new PlaylistResource($playlist);
     }
 
     /**

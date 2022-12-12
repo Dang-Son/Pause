@@ -1,0 +1,42 @@
+GET http://127.0.0.1:8000/api/song?include=artist,playlists
+###
+GET http://127.0.0.1:8000/api/song/3
+###
+POST http://127.0.0.1:8000/api/song
+Content-Type: application/json
+
+{
+    "data":{
+        "attributes":{
+            "artist_id":"1",
+            "name":"qwer",
+            "liked":"100",
+            "views":"1000",
+            "category":"zxcv"
+        }
+    }
+    
+
+}
+###
+
+PATCH http://127.0.0.1:8000/api/song/3
+Content-Type: application/json
+Accept: application/json
+
+{
+     "data":{
+        "attributes":{
+            "artist_id":"1",
+            "name":"qwer",
+            "liked":"100",
+            "views":"1000",
+            "category":"zxcv"
+        }
+    }
+}
+###
+DELETE http://127.0.0.1:8000/api/song/2
+Content-Type: application/json
+Accept: application/json
+
