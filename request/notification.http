@@ -1,0 +1,22 @@
+GET http://127.0.0.1:8000/api/notification
+###
+GET http://127.0.0.1:8000/api/notification/3
+###
+POST http://127.0.0.1:8000/api/notification
+Content-Type: application/json
+
+{
+     
+}
+###
+DELETE http://127.0.0.1:8000/api/notification/5
+Content-Type: application/json
+Accept: application/json
+###
+GET http://127.0.0.1:8000/api/notification/5?include=user
+accept: application/json
+content-type: application/json
+###
+GET http://127.0.0.1:8000/api/notification?include=user
+accept: application/json
+content-type: application/json

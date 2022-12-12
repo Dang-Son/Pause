@@ -1,0 +1,37 @@
+GET http://127.0.0.1:8000/api/user/1?include=artist,playlists
+accept: application/json
+content-type: application/json
+###
+GET http://127.0.0.1:8000/api/user/1/followed
+accept: application/json
+content-type: application/json
+###
+POST  http://127.0.0.1:8000/api/user/1/9/followed
+accept: application/json
+content-type: application/json
+
+###
+DELETE  http://127.0.0.1:8000/api/user/1/3/followed
+accept: application/json
+content-type: application/json
+###
+GET http://127.0.0.1:8000/api/user
+accept: application/json
+content-type: application/json
+###
+PATCH http://127.0.0.1:8000/api/user/2
+accept: application/json
+content-type: application/json
+
+{
+     "data":{
+        "attributes":{
+            "name": "Dang Hai Hoang Son",
+            "email": "SonDang"
+        }
+    }
+}
+###
+DELETE http://127.0.0.1:8000/api/user/2
+accept: application/json
+content-type: application/json

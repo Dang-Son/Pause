@@ -1,0 +1,52 @@
+GET http://127.0.0.1:8000/api/artist/1?include=user,songs
+###
+GET http://127.0.0.1:8000/api/artist/3
+###
+POST http://127.0.0.1:8000/api/artist
+accept: application/json
+content-type: application/json
+
+{
+    "data" : {
+      "attributes": {
+        "name": "tam",
+        "user_id" :"1"
+      }
+    }
+}
+
+
+###
+PATCH http://127.0.0.1:8000/api/artist/3
+Content-Type: application/json
+Accept: application/json
+
+{
+    "data" : {
+      "attributes": {
+        "name": "SIEU NHAN DIEN QUANG",
+        "user_id" :"1"
+      }
+    }
+}
+
+###
+DELETE http://127.0.0.1:8000/api/artist/5
+Content-Type: application/json
+Accept: application/json
+###
+GET http://127.0.0.1:8000/api/artist/3?include=user
+accept: application/json
+content-type: application/json
+
+
+###
+GET http://127.0.0.1:8000/api/artist/3
+accept: application/json
+content-type: application/json
+
+
+###
+GET http://127.0.0.1:8000/api/artist?include=user&sort=-name
+accept: application/json
+content-type: application/json

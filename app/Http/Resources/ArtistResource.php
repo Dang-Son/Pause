@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SongResource extends JsonResource
+class ArtistResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,26 +16,25 @@ class SongResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'type' => 'song',
+            'type' => 'artist',
             'attributes' => [
                 'name' => $this->name,
-                'liked' => $this->liked,
-                'views' => $this->views,
-                'category' => $this->category,
+                'followed' => $this->followed,
+                'user_id' => $this->user_id,
             ],
 
             'relationships' => [
-                'playlists' => [
+                'user' => [
                     'links' => [],
-                    'data' => PlaylistResource::collection($this->whenLoaded('playlists'))
+                    'data' => new UserResource($this->whenLoaded('user')),
                 ],
-                'artist' => [
+                'songs' => [
                     'links' => [],
-                    'data' => new ArtistResource($this->whenLoaded('artist'))
-                ],
+                    'data' => SongResource::collection($this->whenLoaded('songs')),
+                ]
             ],
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

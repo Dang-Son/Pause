@@ -1,0 +1,45 @@
+GET http://127.0.0.1:8000/api/comment?include=user,song
+###
+GET http://127.0.0.1:8000/api/comment/51?include=user,song
+###
+POST http://127.0.0.1:8000/api/comment HTTP/1.1
+content-type: application/json
+accept: application/json
+
+{
+    "data":{
+        "attributes":{
+            "content": "day la data tao them",
+            "song_id": "1",
+            "user_id": "3"
+        }
+    } 
+}
+
+
+###
+PATCH http://127.0.0.1:8000/api/comment/3?include=user,song
+Content-Type: application/json
+Accept: application/json
+
+{
+     "data":{
+        "attributes":{
+            "content": "day la data tao them",
+            "song_id": "3",
+            "user_id": "3"
+        }
+    } 
+}
+###
+DELETE http://127.0.0.1:8000/api/comment/5
+Content-Type: application/json
+Accept: application/json
+###
+GET http://127.0.0.1:8000/api/comment/3?include=user
+accept: application/json
+content-type: application/json
+###
+GET http://127.0.0.1:8000/api/comment?include=user
+accept: application/json
+content-type: application/json
