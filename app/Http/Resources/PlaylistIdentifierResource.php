@@ -17,6 +17,15 @@ class PlaylistIdentifierResource extends JsonResource
         return [
             'id' => (string) $this->id,
             'type' => 'playlist',
+
+            'attributes' => [
+                'name' => $this->name,
+                'bg_color' => $this->bg_color,
+                'imageURL' => $this->imageURL,
+            ],
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+
         ];
     }
 }

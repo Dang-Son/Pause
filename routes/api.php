@@ -99,6 +99,10 @@ Route::delete('/history/{history}', [HistoryController::class, 'destroy']);
 
 
 
+// Get total user 
+Route::get('/user/total/{user}', [UserController::class, 'get_total']);
+
+
 // related
 Route::get('song/{song}/playlist', [SongPlaylistRelatedController::class, 'index'])->name('song.playlist');
 

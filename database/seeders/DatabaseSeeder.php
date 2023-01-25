@@ -24,25 +24,16 @@ class DatabaseSeeder extends Seeder
         $this->call(SongSeeder::class);
         $this->call(PlaylistSeeder::class);
 
-        DB::table('playlist_song')->insert([
 
-            'playlist_id' => '1',
-            'song_id' => '1'
-        ]);
-        DB::table('playlist_song')->insert([
-
-            'playlist_id' => '1',
-            'song_id' => '3'
-        ]);
-        DB::table('playlist_song')->insert([
-
-            'playlist_id' => '1',
-            'song_id' => '2'
-        ]);
         $this->call(ArtistSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(HistorySeeder::class);
         $this->call(NotificationSeeder::class);
+
+
+        $this->call(FollowedPlaylistSeeder::class);
+
+        $this->call(SongPlaylistSeeder::class);
 
         DB::table('followed_artists')->insert([
 

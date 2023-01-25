@@ -42,6 +42,8 @@ class HistoryController extends Controller
      */
     public function store(StoreHistoryRequest $request)
     {
+        $song = Song::create($request->input(("data.attributes")));
+        return new SongResource($song);
     }
 
     /**

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ArtistIdentifierResource;
 use App\Http\Resources\ArtistResource;
+use App\Http\Resources\PlaylistIdentifierResource;
+use App\Http\Resources\PlaylistResource;
 use App\Http\Resources\UserResource;
+use App\Models\Playlist;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -98,5 +101,42 @@ class UserController extends Controller
     {
         $user->delete();
         return 'Xóa nguoi dung thành công';
+    }
+
+
+
+    public function get_total(User $user)
+    {
+
+
+
+        // Load playlist
+        $playlist = Playlist::join('followed_playlists', 'playlists.id', '=', 'followed_playlists.playlist_id')
+            ->where('followed_playlists.user_id', $user->id)
+            ->get();
+
+        // Allow it to load song related 
+        $playlist = $playlist->load('songs');
+        $playlist = PlaylistResource::collection($playlist);
+
+
+        // Load related artist 
+        $artist = DB::table('followed_artists')
+            ->join('artists', 'artists.id', '=', 'followed_artists.artist_id')
+            ->where('followed_artists.user_id', '=', $user->id)
+            ->select('artists.*')
+            ->get();
+
+        $artist = ArtistIdentifierResource::collection($artist);
+
+        return [
+            'data' => [
+
+                'attributes' => [
+                    'playlist' => $playlist,
+                    'artist' => $artist,
+                ],
+            ]
+        ];
     }
 }

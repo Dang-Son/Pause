@@ -11,7 +11,7 @@ class Song extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['artist_id', 'name', 'liked', 'views', 'category'];
+    protected $fillable = ['artist_id', 'name', 'liked', 'views', 'category', 'imageURL'];
 
     public function artist()
     {

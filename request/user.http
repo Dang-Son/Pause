@@ -1,4 +1,4 @@
-GET http://127.0.0.1:8000/api/user/1?include=artist,playlists
+GET http://127.0.0.1:8000/api/user/1?include=artist,followed_playlist
 accept: application/json
 content-type: application/json
 ###
@@ -33,5 +33,12 @@ content-type: application/json
 }
 ###
 DELETE http://127.0.0.1:8000/api/user/2
+accept: application/json
+content-type: application/json
+
+
+
+###
+GET http://127.0.0.1:8000/api/user/total/1
 accept: application/json
 content-type: application/json

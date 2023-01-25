@@ -19,12 +19,16 @@ class SongFactory extends Factory
      */
     public function definition()
     {
+
+        $image_link = 'https://picsum.photos/id/' . rand(10, 200) . '/800';
+
         $artist_id = Artist::factory()->create()->id;
         return [
-            'name' => fake()->name(),
+            'name' => fake()->sentence(rand(1, 3)),
             'liked' => fake()->randomDigitNotNull(),
             'views' => fake()->randomDigitNotNull(),
             'category' => fake()->name(),
+            'imageURL' =>  $image_link,
             'artist_id' => $artist_id
         ];
     }
