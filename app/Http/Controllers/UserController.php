@@ -108,12 +108,12 @@ class UserController extends Controller
     public function get_total(User $user)
     {
 
+        $topPlaylist = Playlist::all()->load('songs');
+        $topPlaylist = PlaylistResource::collection($topPlaylist);
 
 
-        // Load playlist
-        $playlist = Playlist::join('followed_playlists', 'playlists.id', '=', 'followed_playlists.playlist_id')
-            ->where('followed_playlists.user_id', $user->id)
-            ->get();
+        // Load playlist user created
+        $playlist = Playlist::all()->where('user_id', '=', $user->id);
 
         // Allow it to load song related 
         $playlist = $playlist->load('songs');
@@ -135,7 +135,10 @@ class UserController extends Controller
                 'attributes' => [
                     'playlist' => $playlist,
                     'artist' => $artist,
+                    'top_playlist' => $topPlaylist,
+                    'user' => new UserResource($user)
                 ],
+
             ]
         ];
     }

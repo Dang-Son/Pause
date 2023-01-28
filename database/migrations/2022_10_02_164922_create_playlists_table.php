@@ -17,7 +17,19 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('bg_color');
+
+            $table->integer('views');
             $table->string('imageURL');
+
+            // Relationship to User table
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+
+
             $table->timestamps();
         });
     }

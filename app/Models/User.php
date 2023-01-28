@@ -60,6 +60,11 @@ class User extends Authenticatable
         return $this->hasOne(Artist::class);
     }
 
+    public function playlist()
+    {
+        return $this->hasMany(Playlist::class);
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
