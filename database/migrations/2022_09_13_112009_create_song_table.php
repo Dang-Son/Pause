@@ -21,8 +21,12 @@ return new class extends Migration
             $table->integer('views');
             $table->string('category');
             $table->string('imageURL');
+            $table->string('audioURL');
             $table->timestamps();
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
+
+            $table->unsignedBigInteger('playlist_id');
+            $table->foreign('playlist_id')->references('id')->on('playlists')->onDelete('cascade');
         });
     }
 
