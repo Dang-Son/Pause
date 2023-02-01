@@ -135,16 +135,16 @@
         },
         {
             "name": "cloudinary/cloudinary_php",
-            "version": "2.10.0",
+            "version": "2.10.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:cloudinary/cloudinary_php.git",
-                "reference": "84edefdd9e636371f2a71490b2a08b3e769e4f7d"
+                "reference": "c765dfe097c6b92628fc4f412babf762c4d37054"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/84edefdd9e636371f2a71490b2a08b3e769e4f7d",
-                "reference": "84edefdd9e636371f2a71490b2a08b3e769e4f7d",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/c765dfe097c6b92628fc4f412babf762c4d37054",
+                "reference": "c765dfe097c6b92628fc4f412babf762c4d37054",
                 "shasum": ""
             },
             "require": {
@@ -195,20 +195,20 @@
                 "email": "info@cloudinary.com",
                 "issues": "https://github.com/cloudinary/cloudinary_php/issues"
             },
-            "time": "2023-01-12T14:35:09+00:00"
+            "time": "2023-01-28T18:48:29+00:00"
         },
         {
             "name": "cloudinary/transformation-builder-sdk",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:cloudinary/php-transformation-builder-sdk.git",
-                "reference": "fbf58805e6e2d10fadb9471bb3d157e0ab40e03a"
+                "reference": "7e6fd25091bf783cd3c95f73418d472a4b3febb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cloudinary/php-transformation-builder-sdk/zipball/fbf58805e6e2d10fadb9471bb3d157e0ab40e03a",
-                "reference": "fbf58805e6e2d10fadb9471bb3d157e0ab40e03a",
+                "url": "https://api.github.com/repos/cloudinary/php-transformation-builder-sdk/zipball/7e6fd25091bf783cd3c95f73418d472a4b3febb7",
+                "reference": "7e6fd25091bf783cd3c95f73418d472a4b3febb7",
                 "shasum": ""
             },
             "require": {
@@ -254,7 +254,7 @@
                 "email": "info@cloudinary.com",
                 "issues": "https://github.com/cloudinary/php-transformation-builder-sdk/issues"
             },
-            "time": "2023-01-19T15:43:10+00:00"
+            "time": "2023-01-28T18:41:49+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -5562,6 +5562,57 @@
                 }
             ],
             "time": "2023-01-20T17:45:48+00:00"
+        },
+        {
+            "name": "teapot/status-code",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teapot-php/status-code.git",
+                "reference": "39cce90f07bf2a906d19e6de9418e0382e75e0bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/teapot-php/status-code/zipball/39cce90f07bf2a906d19e6de9418e0382e75e0bf",
+                "reference": "39cce90f07bf2a906d19e6de9418e0382e75e0bf",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "^3.7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Teapot\\StatusCode\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barney Hanlon",
+                    "email": "barney@shrikeh.net"
+                },
+                {
+                    "name": "Andreas Möller",
+                    "email": "am@localheinz.com"
+                }
+            ],
+            "description": "PHP HTTP Response Status code library",
+            "homepage": "https://github.com/teapot-php/status-code",
+            "keywords": [
+                "http"
+            ],
+            "support": {
+                "issues": "https://github.com/teapot-php/status-code/issues",
+                "source": "https://github.com/teapot-php/status-code/tree/2.0.0"
+            },
+            "time": "2022-09-22T13:59:09+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

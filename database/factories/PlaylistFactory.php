@@ -69,7 +69,6 @@ class PlaylistFactory extends Factory
             "name" => fake()->colorName(),
             'bg_color' => $bg_color,
             'user_id' => $user_created_id->id,
-            'song_id' => $song_id->id,
             'imageURL' => $image_link,
             'category' => $category[array_rand($category)],
             'views' => fake()->randomNumber(4, true),

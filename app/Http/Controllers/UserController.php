@@ -108,8 +108,12 @@ class UserController extends Controller
     public function get_total(User $user)
     {
 
-        $topPlaylist = Playlist::all()->load('songs');
-        $topPlaylist = PlaylistResource::collection($topPlaylist);
+        $playlistTotal = Playlist::all()->groupBy('category');
+
+        $top_playlist = Playlist::orderBy('views')->get();
+        $top_playlist = $top_playlist->load('songs');
+
+        // $topPlaylist = PlaylistResource::collection($topPlaylist);
 
 
         // Load playlist user created
@@ -117,24 +121,17 @@ class UserController extends Controller
 
         // Allow it to load song related 
         $playlist = $playlist->load('songs');
-        $playlist = PlaylistResource::collection($playlist);
 
 
         // Load related artist 
-        $artist = DB::table('followed_artists')
-            ->join('artists', 'artists.id', '=', 'followed_artists.artist_id')
-            ->where('followed_artists.user_id', '=', $user->id)
-            ->select('artists.*')
-            ->get();
+        // $artist = DB::table('followed_artists')
+        //     ->join('artists', 'artists.id', '=', 'followed_artists.artist_id')
+        //     ->where('followed_artists.user_id', '=', $user->id)
+        //     ->select('artists.*')
+        //     ->get();
 
-        $artist = ArtistIdentifierResource::collection($artist);
+        // $artist = ArtistIdentifierResource::collection($artist);
 
-
-        //List Top Views
-        $top_rap = Playlist::orderBy('views')->where('category', '=', 'Rap')->get()->load('songs');
-        $top_chill = Playlist::orderBy('views')->where('category', '=', 'Chill')->get()->load('songs');
-        $top_bolero = Playlist::orderBy('views')->where('category', '=', 'Bolero')->get()->load('songs');
-        $top_pop = Playlist::orderBy('views')->where('category', '=', 'Pop')->get()->load('songs');
 
 
 
@@ -142,15 +139,16 @@ class UserController extends Controller
             'data' => [
 
                 'attributes' => [
-                    'playlist' => $playlist,
-                    'artist' => $artist,
-                    'top_playlist' => $topPlaylist,
-                    'user' => new UserResource($user),
+                    'playlist' => PlaylistResource::collection($playlist),
+                    // 'artist' => $artist,
+                    'top_playlist' => PlaylistResource::collection($top_playlist),
+                    // 'user' => new UserResource($user),
 
-                    'top_rap' => PlaylistResource::collection($top_rap),
-                    'top_chill' => PlaylistResource::collection($top_chill),
-                    'top_bolero' => PlaylistResource::collection($top_bolero),
-                    'top_pop' => PlaylistResource::collection($top_pop)
+                    'top_rap' =>   PlaylistResource::collection($playlistTotal["Rap"]->sortByDesc('views')->load('songs')),
+                    'top_chill' =>   PlaylistResource::collection($playlistTotal["Chill"]->sortByDesc('views')->load('songs')),
+                    'top_bolero' =>   PlaylistResource::collection($playlistTotal["Bolero"]->sortByDesc('views')->load('songs')),
+                    'top_pop' =>   PlaylistResource::collection($playlistTotal["Pop"]->sortByDesc('views'))
+
                 ],
 
             ]
