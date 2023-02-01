@@ -58,4 +58,51 @@ accpet: application/json
 
 
 
+###
+POST  http://127.0.0.1:8000/api/d
+Content-Type: multipart/form-data;  boundary=----chickenHere
+Accept: application/json
 
+
+------chickenHere
+Content-Disposition: form-data; name="audio"; filename="aa.mp3"
+Content-Type: audio/mpeg3
+
+< ./aa.mp3
+------chickenHere
+Content-Disposition: form-data; name="image"; filename="demo.jpg"
+Content-Type: image/jpeg
+
+< ./demo.jpg
+------chickenHere--
+
+###
+POST  http://127.0.0.1:8000/api/song
+Content-Type: multipart/form-data;  boundary=----chickenHere
+accept: application/json
+
+------chickenHere
+Content-Disposition: form-data; name="name"; 
+content-type: application/json
+
+{
+    "data" : {
+      "attributes": {
+        "name": "SIEU NHAN DIEN QUANG",
+        "user_id" :"1"
+      }
+    }
+}
+
+
+------chickenHere
+Content-Disposition: form-data; name="audio"; filename="aa.mp3"
+Content-Type: audio/mpeg3
+
+< ./aa.mp3
+------chickenHere
+Content-Disposition: form-data; name="image"; filename="demo.jpg"
+Content-Type: image/jpeg
+
+< ./demo.jpg
+------chickenHere--

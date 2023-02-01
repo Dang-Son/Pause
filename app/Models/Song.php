@@ -11,7 +11,7 @@ class Song extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['artist_id', 'name', 'liked', 'views', 'category', 'imageURL'];
+    protected $fillable = ['artist_id', 'name', 'liked', 'views', 'category', 'imageURL', 'audioURL', 'playlist_id'];
 
     public function artist()
     {
@@ -19,8 +19,8 @@ class Song extends Model
     }
 
 
-    public function playlists()
+    public function playlist()
     {
-        return $this->belongsToMany(Playlist::class);
+        return $this->belongsTo(Playlist::class);
     }
 }

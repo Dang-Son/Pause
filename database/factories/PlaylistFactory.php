@@ -38,8 +38,7 @@ class PlaylistFactory extends Factory
             )
         );
 
-        $image_link = 'https://picsum.photos/id/' . rand(10, 50) . '/400';
-
+        $image_link = 'https://picsum.photos/seed/' . rand(1, 3000) . '/400/400';
 
         $contents = file_get_contents($image_link, false, $context);
 
