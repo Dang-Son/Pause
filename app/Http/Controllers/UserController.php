@@ -129,6 +129,15 @@ class UserController extends Controller
 
         $artist = ArtistIdentifierResource::collection($artist);
 
+
+        //List Top Views
+        $top_rap = Playlist::orderBy('views')->where('category', '=', 'Rap')->get()->load('songs');
+        $top_chill = Playlist::orderBy('views')->where('category', '=', 'Chill')->get()->load('songs');
+        $top_bolero = Playlist::orderBy('views')->where('category', '=', 'Bolero')->get()->load('songs');
+        $top_pop = Playlist::orderBy('views')->where('category', '=', 'Pop')->get()->load('songs');
+
+
+
         return [
             'data' => [
 
@@ -136,7 +145,12 @@ class UserController extends Controller
                     'playlist' => $playlist,
                     'artist' => $artist,
                     'top_playlist' => $topPlaylist,
-                    'user' => new UserResource($user)
+                    'user' => new UserResource($user),
+
+                    'top_rap' => PlaylistResource::collection($top_rap),
+                    'top_chill' => PlaylistResource::collection($top_chill),
+                    'top_bolero' => PlaylistResource::collection($top_bolero),
+                    'top_pop' => PlaylistResource::collection($top_pop)
                 ],
 
             ]

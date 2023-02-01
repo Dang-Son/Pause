@@ -27,7 +27,6 @@ class SongFactory extends Factory
             'name' => fake()->sentence(rand(1, 3)),
             'liked' => fake()->randomDigitNotNull(),
             'views' => fake()->randomDigitNotNull(),
-            'category' => fake()->name(),
             'imageURL' =>  $image_link,
             'artist_id' => $artist_id
         ];
