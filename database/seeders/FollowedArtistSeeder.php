@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Playlist;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PlaylistSeeder extends Seeder
+class FollowedArtistSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +15,5 @@ class PlaylistSeeder extends Seeder
     public function run()
     {
         //
-        Playlist::factory()->count(30)->create();
     }
 }

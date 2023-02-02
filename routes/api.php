@@ -10,6 +10,7 @@ use App\Http\Controllers\FollowedArtistUserController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SongPlaylistRelatedController;
 use App\Http\Controllers\SongPlaylistRelationshipsController;
 use App\Http\Controllers\UserController;
@@ -99,7 +100,16 @@ Route::delete('/history/{history}', [HistoryController::class, 'destroy']);
 
 
 
+// Get total user 
+Route::get('/user/total/{user}', [UserController::class, 'get_total']);
+
+
 // related
 Route::get('song/{song}/playlist', [SongPlaylistRelatedController::class, 'index'])->name('song.playlist');
 
 // Route::get('/follow', [FollowController::class, 'index']);
+
+
+//Search
+Route::get('/search', [SearchController::class, 'index']);
+Route::get('/search/category', [SearchController::class, 'getAllSongSameCategory']);

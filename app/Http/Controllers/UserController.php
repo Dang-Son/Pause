@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ArtistIdentifierResource;
 use App\Http\Resources\ArtistResource;
+use App\Http\Resources\PlaylistIdentifierResource;
+use App\Http\Resources\PlaylistResource;
 use App\Http\Resources\UserResource;
+use App\Models\Playlist;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -98,5 +101,57 @@ class UserController extends Controller
     {
         $user->delete();
         return 'Xóa nguoi dung thành công';
+    }
+
+
+
+    public function get_total(User $user)
+    {
+
+        $playlistTotal = Playlist::all()->groupBy('category');
+
+        $top_playlist = Playlist::orderBy('views')->get();
+        $top_playlist = $top_playlist->load('songs');
+
+        // $topPlaylist = PlaylistResource::collection($topPlaylist);
+
+
+        // Load playlist user created
+        $playlist = Playlist::all()->where('user_id', '=', $user->id);
+
+        // Allow it to load song related 
+        $playlist = $playlist->load('songs');
+
+
+        // Load related artist 
+        // $artist = DB::table('followed_artists')
+        //     ->join('artists', 'artists.id', '=', 'followed_artists.artist_id')
+        //     ->where('followed_artists.user_id', '=', $user->id)
+        //     ->select('artists.*')
+        //     ->get();
+
+        // $artist = ArtistIdentifierResource::collection($artist);
+
+
+
+
+        return [
+            'data' => [
+
+                'attributes' => [
+                    'playlist' => PlaylistResource::collection($playlist),
+                    // 'artist' => $artist,
+                    'top_playlist' => PlaylistResource::collection($top_playlist),
+                    // 'user' => new UserResource($user),
+
+                    'top_rap' =>   PlaylistResource::collection($playlistTotal["Rap"]->sortByDesc('views')->load('songs')),
+                    'top_chill' =>   PlaylistResource::collection($playlistTotal["Chill"]->sortByDesc('views')->load('songs')),
+                    'top_bolero' =>   PlaylistResource::collection($playlistTotal["Bolero"]->sortByDesc('views')->load('songs')),
+                    'top_pop' =>   PlaylistResource::collection($playlistTotal["Pop"]->sortByDesc('views'))
+
+                ],
+
+            ]
+        ];
     }
 }

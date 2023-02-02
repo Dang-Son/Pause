@@ -6,6 +6,10 @@ use App\Http\Resources\SongResource;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
+
+
 
 class SongsController extends Controller
 {
@@ -30,8 +34,28 @@ class SongsController extends Controller
 
     public function store(Request $request)
     {
-        $song = Song::create($request->input(("data.attributes")));
-        return new SongResource($song);
+        // echo $request->input;
+
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $uploadedFileSoundUrl = Cloudinary::uploadVideo($request->file('audio')->getRealPath())->getSecurePath();
+
+            $uploadedFileImageUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $song = Song::create([
+                'name' => $request->name,
+                'liked' => 0,
+                'artist_id' => $request->artist_id,
+                'views' => 0,
+                'category' => $request->category,
+                'imageURL' => $uploadedFileImageUrl,
+                'audioURL' => $uploadedFileSoundUrl,
+                'playlist_id' => $request->playlist_id
+            ]);
+            return new SongResource($song);
+        }
+
+        return response(null, 502);
     }
 
     public function update(Request $request, Song $song)

@@ -19,6 +19,14 @@ class PlaylistResource extends JsonResource
             'type' => 'playlist',
             'attributes' => [
                 'name' => $this->name,
+                'bg_color' => $this->bg_color,
+                'user_created_id' => $this->user->id,
+                'user_created_name' => $this->user->name,
+                'user_created_avtURL' => $this->user->avtURL,
+                'imageURL' => $this->imageURL,
+                'views' => $this->views,
+                'likes' => $this->likes,
+                'category' => $this->category
             ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

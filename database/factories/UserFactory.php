@@ -17,10 +17,16 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $string_name = fake()->name;
+        $pieces = explode(" ", $string_name);
+        $first_part = implode(" ", array_splice($pieces, 0, 3));
+
+        $imageURL = 'https://picsum.photos/seed/' . rand(1, 3000) . '/400/400';
         return [
-            'name' => fake()->name(),
+            'name' => $first_part,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'avtURL' => $imageURL,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avtURL'
     ];
 
     /**
@@ -58,6 +59,11 @@ class User extends Authenticatable
     {
         Log::error('go here artist');
         return $this->hasOne(Artist::class);
+    }
+
+    public function playlist()
+    {
+        return $this->hasMany(Playlist::class);
     }
 
     public function comments()
