@@ -17,18 +17,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('bg_color');
-
+            $table->string('category');
             $table->integer('views');
             $table->string('imageURL');
-
+            $table->integer('likes');
             // Relationship to User table
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-
-
 
             $table->timestamps();
         });

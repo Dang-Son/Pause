@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Playlist;
+use App\Models\Song;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,6 +19,8 @@ class PlaylistFactory extends Factory
 {
 
     protected $model = Playlist::class;
+    protected $fillable = ['name', 'category', 'likes', 'views'];
+
     /**
      * Define the model's default state.
      *
@@ -54,18 +57,22 @@ class PlaylistFactory extends Factory
         $colors = $extractor->extract(5);
 
 
-
+        $category = ['Rap', 'Chill', 'Bolero', 'Pop'];
 
         // Get bg color from image
         $bg_color = Color::fromIntToHex(array_values($colors)[0]);
         $user_created_id = User::inRandomOrder()->first();
+        $song_id = Song::inRandomOrder()->first();
+
         return [
             //
             "name" => fake()->colorName(),
             'bg_color' => $bg_color,
             'user_id' => $user_created_id->id,
             'imageURL' => $image_link,
-            'views' => fake()->randomNumber(4, true)
+            'category' => $category[array_rand($category)],
+            'views' => fake()->randomNumber(4, true),
+            'likes' => fake()->randomNumber(4, true)
         ];
     }
 }

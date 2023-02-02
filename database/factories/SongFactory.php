@@ -29,7 +29,6 @@ class SongFactory extends Factory
             'name' => fake()->sentence(rand(1, 3)),
             'liked' => fake()->randomDigitNotNull(),
             'views' => fake()->randomDigitNotNull(),
-            'category' => fake()->name(),
             'imageURL' =>  $image_link,
             'audioURL' => 'https://res.cloudinary.com/dck0bidwh/video/upload/v1674927822/ofrljpynd1gheipnkee7.mp3',
             'artist_id' => $artist_id,

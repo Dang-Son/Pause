@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('artist_id');
             $table->integer('liked');
             $table->integer('views');
-            $table->string('category');
             $table->string('imageURL');
             $table->string('audioURL');
             $table->timestamps();
