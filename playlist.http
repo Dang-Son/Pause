@@ -80,4 +80,34 @@ content-type: application/json
 }
 
 
+
 ###
+POST  http://127.0.0.1:8000/api/playlist
+Content-Type: multipart/form-data;  boundary=----chickenHere
+Accept: application/json
+
+------chickenHere
+Content-Disposition: form-data; name="category";"
+
+Pop
+
+------chickenHere
+Content-Disposition: form-data; name="name";"
+
+Hello
+
+------chickenHere
+Content-Disposition: form-data; name="user_id";"
+
+1
+
+------chickenHere
+Content-Disposition: form-data; name="image"; filename="demo.jpg"
+Content-Type: image/jpeg
+
+< ./demo.jpg
+------chickenHere--
+
+###
+
+

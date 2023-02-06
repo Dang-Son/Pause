@@ -47,7 +47,6 @@ class SongsController extends Controller
                 'liked' => 0,
                 'artist_id' => $request->artist_id,
                 'views' => 0,
-                'category' => $request->category,
                 'imageURL' => $uploadedFileImageUrl,
                 'audioURL' => $uploadedFileSoundUrl,
                 'playlist_id' => $request->playlist_id
