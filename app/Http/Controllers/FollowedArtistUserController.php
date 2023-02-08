@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ArtistIdentifierResource;
+use App\Http\Resources\UserIdentifierResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,6 +55,16 @@ class FollowedArtistUserController extends Controller
             ->get();
 
         return ArtistIdentifierResource::collection($artist);
+    }
+
+    public function showListUserFollowArtist($artist_id)
+    {
+        $user_id = DB::table('followed_artists')
+            ->where('followed_artists.artist_id', '=', $artist_id)
+            ->select('followed_artists.user_id')
+            ->get();
+
+        return $user_id;
     }
 
     /**

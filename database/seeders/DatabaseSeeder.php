@@ -37,13 +37,13 @@ class DatabaseSeeder extends Seeder
 
         DB::table('followed_artists')->insert([
 
-            'user_id' => '1',
-            'artist_id' => '2'
+            'user_id' => '2',
+            'artist_id' => '1'
         ]);
         DB::table('followed_artists')->insert([
 
-            'user_id' => '1',
-            'artist_id' => '3'
+            'user_id' => '3',
+            'artist_id' => '1'
         ]);
     }
 }

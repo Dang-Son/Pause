@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notification extends Model
 {
-    protected $fillable = ['link', 'content'];
+    protected $fillable = ['content', 'song_id', 'user_id'];
     use HasFactory;
 
     public function comment()

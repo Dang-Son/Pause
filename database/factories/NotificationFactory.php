@@ -22,10 +22,9 @@ class NotificationFactory extends Factory
     public function definition()
     {
         return [
-            'link' => fake()->name(),
             'content' => fake()->name(),
             'user_id' => User::all()->random(1)->first()->id,
-            'comment_id' => Comment::all()->random(1)->first()->id
+            'song_id' => Song::all()->random(1)->first()->id
         ];
     }
 }

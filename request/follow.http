@@ -1,0 +1,6 @@
+// show artist's follow
+GET http://127.0.0.1:8000/api/user/1/followed
+
+###
+// show user's follow
+GET http://127.0.0.1:8000/api/artist/2/followed

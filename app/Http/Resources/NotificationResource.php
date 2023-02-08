@@ -18,8 +18,9 @@ class NotificationResource extends JsonResource
             'id' => $this->id,
             'type' => 'notification',
             'attributes' => [
-                'link' => $this->link,
                 'content' => $this->content,
+                'user_id' => $this->user_id,
+                'song_id' => $this->song_id
             ],
 
             'relationships' => [

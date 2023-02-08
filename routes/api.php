@@ -44,6 +44,7 @@ Route::patch('/user/{user}', [UserController::class, 'update']);
 Route::delete('/user/{user}', [UserController::class, 'destroy']);
 
 Route::get('/user/{user}/followed', [FollowedArtistUserController::class, 'show']);
+Route::get('/artist/{artist}/followed', [FollowedArtistUserController::class, 'showListUserFollowArtist']);
 Route::post('/user/{user}/{artist}/followed', [FollowedArtistUserController::class, 'follow']);
 Route::delete('/user/{user}/{artist}/followed', [FollowedArtistUserController::class, 'unfollow']);
 

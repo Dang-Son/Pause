@@ -6,6 +6,8 @@ use App\Models\notification;
 use App\Http\Requests\StorenotificationRequest;
 use App\Http\Requests\UpdatenotificationRequest;
 use App\Http\Resources\NotificationResource;
+use Illuminate\Notifications\Notification as NotificationsNotification;
+use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class NotificationController extends Controller
@@ -51,12 +53,10 @@ class NotificationController extends Controller
      * @param  \App\Models\notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function show(notification $notification)
+    public function show($user_id)
     {
-        $notification = QueryBuilder::for(notification::where('id', $notification->id))
-            ->allowedIncludes(['user', 'comment'])
-            ->firstOrFail();
-        return new NotificationResource($notification);
+        $notifications = Notification::all()->where('user_id', '=', $user_id);
+        return NotificationResource::collection($notifications);
     }
 
     /**

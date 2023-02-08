@@ -7,9 +7,8 @@ use App\Models\Song;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-
-
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SongsController extends Controller
 {
@@ -51,6 +50,22 @@ class SongsController extends Controller
                 'audioURL' => $uploadedFileSoundUrl,
                 'playlist_id' => $request->playlist_id
             ]);
+
+            $users_id = DB::table('followed_artists')
+                ->where('followed_artists.artist_id', '=', $request->artist_id)
+                ->select('followed_artists.user_id')
+                ->get();
+            Log::info($users_id);
+
+            foreach ($users_id as $p) {
+                $notification = DB::table('notifications')
+                    ->insert([
+                        'content' => $song->artist->name . ' đã thêm bài hát mới',
+                        'user_id' => $p->user_id,
+                        'song_id' => $song->id
+                    ]);
+                Log::info($notification);
+            }
             return new SongResource($song);
         }
 
