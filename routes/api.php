@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SongsController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\FollowedArtistUserController;
@@ -114,3 +115,10 @@ Route::get('song/{song}/playlist', [SongPlaylistRelatedController::class, 'index
 //Search
 Route::get('/search', [SearchController::class, 'index']);
 Route::get('/search/category', [SearchController::class, 'getAllSongSameCategory']);
+
+//register
+Route::post('/register', [AuthController::class, 'register']);
+//login
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');;

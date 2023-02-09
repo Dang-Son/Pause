@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\SongResource;
+use App\Models\Notification;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -16,7 +17,7 @@ class SongsController extends Controller
     {
 
         $songs = QueryBuilder::for(Song::class)
-            ->allowedIncludes(['playlists', 'artist'])
+            ->allowedIncludes(['playlist', 'artist'])
             ->allowedSorts(['name', 'id'])
             ->jsonPaginate();
         return SongResource::collection($songs);
@@ -26,7 +27,7 @@ class SongsController extends Controller
     {
 
         $song = QueryBuilder::for(Song::where('id', $song->id))
-            ->allowedIncludes(['playlists', 'artist'])
+            ->allowedIncludes(['playlist', 'artist'])
             ->firstOrFail();
         return new SongResource($song);
     }
@@ -58,12 +59,12 @@ class SongsController extends Controller
             Log::info($users_id);
 
             foreach ($users_id as $p) {
-                $notification = DB::table('notifications')
-                    ->insert([
-                        'content' => $song->artist->name . ' đã thêm bài hát mới',
-                        'user_id' => $p->user_id,
-                        'song_id' => $song->id
-                    ]);
+                $notification = Notification::create([
+                    'content' => $song->artist->name . ' đã thêm bài hát mới',
+                    'user_id' => $p->user_id,
+                    'bg_url' => $uploadedFileImageUrl,
+                    'song_id' => $song->id
+                ]);
                 Log::info($notification);
             }
             return new SongResource($song);

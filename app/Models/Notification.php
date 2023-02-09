@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notification extends Model
 {
-    protected $fillable = ['content', 'song_id', 'user_id'];
+    protected $fillable = ['content', 'song_id', 'user_id', 'bg_url'];
     use HasFactory;
 
     public function comment()
@@ -18,5 +18,9 @@ class Notification extends Model
     public function user()
     {
         return $this->belongsTo(user::class);
+    }
+    public function song()
+    {
+        return $this->belongsTo(Song::class);
     }
 }
