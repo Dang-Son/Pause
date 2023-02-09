@@ -21,10 +21,12 @@ class NotificationFactory extends Factory
      */
     public function definition()
     {
+        $image_link = 'https://picsum.photos/id/' . rand(10, 50) . '/800';
         return [
             'content' => fake()->name(),
             'user_id' => User::all()->random(1)->first()->id,
-            'song_id' => Song::all()->random(1)->first()->id
+            'song_id' => Song::all()->random(1)->first()->id,
+            'bg_url' => $image_link
         ];
     }
 }

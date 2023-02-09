@@ -20,7 +20,8 @@ class NotificationResource extends JsonResource
             'attributes' => [
                 'content' => $this->content,
                 'user_id' => $this->user_id,
-                'song_id' => $this->song_id
+                'song_id' => $this->song_id,
+                'bg_url' => $this->bg_url
             ],
 
             'relationships' => [
@@ -32,6 +33,7 @@ class NotificationResource extends JsonResource
                     'links' => [],
                     'data' => new CommentResource($this->whenLoaded('comment')),
                 ],
+                'song' => new SongResource($this->song)
             ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

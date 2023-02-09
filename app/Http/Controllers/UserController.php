@@ -142,7 +142,7 @@ class UserController extends Controller
                     'playlist' => PlaylistResource::collection($playlist),
                     // 'artist' => $artist,
                     'top_playlist' => PlaylistResource::collection($top_playlist),
-                    // 'user' => new UserResource($user),
+                    'user' => new UserResource($user),
 
                     'top_rap' =>   PlaylistResource::collection($playlistTotal["Rap"]->sortByDesc('views')->load('songs')),
                     'top_chill' =>   PlaylistResource::collection($playlistTotal["Chill"]->sortByDesc('views')->load('songs')),

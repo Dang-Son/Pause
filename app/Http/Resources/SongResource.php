@@ -23,13 +23,14 @@ class SongResource extends JsonResource
                 'views' => $this->views,
                 'author_name' => $this->artist->name,
                 'imageURL' => $this->imageURL,
-                'audioURL' => $this->audioURL
+                'audioURL' => $this->audioURL,
+                'playlist_id' => $this->playlist->id
             ],
 
             'relationships' => [
                 'playlists' => [
                     'links' => [],
-                    'data' => PlaylistResource::collection($this->whenLoaded('playlists'))
+                    'data' => new PlaylistResource($this->whenLoaded('playlist'))
                 ],
                 'artist' => [
                     'links' => [],
