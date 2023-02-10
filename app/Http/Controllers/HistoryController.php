@@ -6,7 +6,12 @@ use App\Models\History;
 use App\Http\Requests\StoreHistoryRequest;
 use App\Http\Requests\UpdateHistoryRequest;
 use App\Http\Resources\HistoryResource;
+use App\Models\Song;
+use App\Models\User;
+use Carbon\Carbon;
 use Database\Factories\HistoryFactory;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class HistoryController extends Controller
@@ -34,16 +39,60 @@ class HistoryController extends Controller
         //
     }
 
+
+
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreHistoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreHistoryRequest $request)
+    public function store(StoreHistoryRequest $request, User $user, Song $song)
     {
-        $song = Song::create($request->input(("data.attributes")));
-        return new SongResource($song);
+
+        function handleHer(User $user, Song $song)
+        {
+            History::create([
+                'user_id' => $user->id,
+                'song_id' => $song->id,
+                'views' => 0
+            ]);
+            return;
+        }
+
+
+        try {
+            $last_history = History::where('user_id', $user->id)
+                ->where('song_id', $song->id)
+                ->firstOrFail();
+
+
+            $created_at_date = Carbon::parse($last_history->created_at);
+            $diffInMin = Carbon::now()->diffInMinutes($created_at_date);
+
+            // If diff < 10 -> increase views 
+            if ($diffInMin < 10) {
+                $last_history->views = $last_history->views + 1;
+                $last_history->update();
+
+
+                $song->views = $song->views + 1;
+                $song->update();
+            }
+
+            return $last_history;
+        } catch (\Exception $e) {
+            $new_his = History::create([
+                'user_id' => $user->id,
+                'song_id' => $song->id,
+                'views' => 1,
+            ]);
+            return $new_his;
+        }
+
+        // $song = Song::create($request->input(("data.attributes")));
+        // return new SongResource($song);
     }
 
     /**
@@ -95,5 +144,15 @@ class HistoryController extends Controller
     {
         $history->delete();
         return response(null, 204);
+    }
+
+
+    public function get_history_of_user(User $user)
+    {
+        $results =    DB::table('histories')
+            ->select(['user_id'])
+            ->groupBy('user_id')->get();
+
+        return $results;
     }
 }

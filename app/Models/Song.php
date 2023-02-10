@@ -23,6 +23,12 @@ class Song extends Model
         return $this->belongsTo(Playlist::class);
     }
 
+
+    public function histories()
+    {
+        return $this->hasMany(History::class);
+    }
+
     public function notifications()
     {
         return $this->hasMany(Notification::class);

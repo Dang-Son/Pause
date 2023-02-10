@@ -9,6 +9,11 @@ class History extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = ['song_id', 'user_id', 'views'];
+
+
+
     public function song()
     {
         return $this->belongsTo(Song::class);

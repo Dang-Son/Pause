@@ -1,0 +1,18 @@
+GET http://127.0.0.1:8000/api/recommendation/1
+content-type: application/json
+accpet: application/json
+
+
+
+
+###
+GET http://127.0.0.1:8000/api/recommendation2
+content-type: application/json
+accpet: application/json
+
+
+
+###
+GET http://127.0.0.1:8000/api/recommendation3
+content-type: application/json
+accpet: application/json

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->string('listen');
+            $table->integer('views');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('song_id');
             $table->timestamps();

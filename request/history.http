@@ -2,12 +2,13 @@ GET http://127.0.0.1:8000/api/history
 ###
 GET http://127.0.0.1:8000/api/history/3
 ###
-POST http://127.0.0.1:8000/api/history
+POST http://127.0.0.1:8000/api/history/1/1
 Content-Type: application/json
 Accept: application/json
 
 {
     "listen":"history duoc them"
+    
 }
 
 ###
@@ -22,3 +23,8 @@ content-type: application/json
 GET http://127.0.0.1:8000/api/history?include=user
 accept: application/json
 content-type: application/json
+
+
+
+### get history of user
+GET http://127.0.0.1:8000/api/history/user/1

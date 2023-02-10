@@ -11,6 +11,7 @@ use App\Http\Controllers\FollowedArtistUserController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SongPlaylistRelatedController;
 use App\Http\Controllers\SongPlaylistRelationshipsController;
@@ -21,9 +22,12 @@ use App\Http\Resources\HistoryResource;
 use App\Http\Resources\NotificationResource;
 use App\Http\Resources\SongResource;
 use App\Models\Artist;
+use App\Models\History;
 use App\Models\Song;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Log;
+use PHPJuice\Slopeone\Algorithm;
+use OpenCF\RecommenderService;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -95,10 +99,11 @@ Route::patch('song/{song}/relationships/playlist',  [SongPlaylistRelationshipsCo
 
 Route::get('/history', [HistoryController::class, 'index']);
 Route::get('/history/{history}', [HistoryController::class, 'show']);
-// Route::post('/history', [HistoryController::class, 'store']);
+Route::post('/history/{user}/{song}', [HistoryController::class, 'store']);
 Route::patch('/history/{history}', [HistoryController::class, 'update']);
 Route::delete('/history/{history}', [HistoryController::class, 'destroy']);
 
+Route::get('/history/user/{user}', [HistoryController::class, 'get_history_of_user']);
 
 
 
@@ -115,6 +120,9 @@ Route::get('song/{song}/playlist', [SongPlaylistRelatedController::class, 'index
 //Search
 Route::get('/search', [SearchController::class, 'index']);
 Route::get('/search/category', [SearchController::class, 'getAllSongSameCategory']);
+
+Route::get('/recommendation/{user}', [RecommendationController::class, 'get_songs']);
+
 
 //register
 Route::post('/register', [AuthController::class, 'register']);

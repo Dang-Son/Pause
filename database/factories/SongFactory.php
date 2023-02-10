@@ -30,7 +30,7 @@ class SongFactory extends Factory
             'liked' => fake()->randomDigitNotNull(),
             'views' => fake()->randomDigitNotNull(),
             'imageURL' =>  $image_link,
-            'audioURL' => 'https://res.cloudinary.com/dck0bidwh/video/upload/v1674927822/ofrljpynd1gheipnkee7.mp3',
+            'audioURL' => 'https://res.cloudinary.com/dck0bidwh/video/upload/v1675850974/bs1sjno6gknfldz4iwub.mp3',
             'artist_id' => $artist_id,
             'playlist_id' => $playlist_id->id
         ];

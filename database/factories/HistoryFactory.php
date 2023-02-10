@@ -21,7 +21,7 @@ class HistoryFactory extends Factory
     public function definition()
     {
         return [
-            'listen' => fake()->name(),
+            'views' => fake()->numberBetween(1, 200),
             'user_id' => User::all()->random(1)->first()->id,
             'song_id' => Song::all()->random(1)->first()->id,
         ];
