@@ -31,8 +31,9 @@ class SongFactory extends Factory
             'views' => fake()->randomDigitNotNull(),
             'imageURL' =>  $image_link,
             'audioURL' => 'https://res.cloudinary.com/dck0bidwh/video/upload/v1675850974/bs1sjno6gknfldz4iwub.mp3',
-            'artist_id' => $artist_id,
-            'playlist_id' => $playlist_id->id
+            'artist_id' => 3,
+            'playlist_id' => $playlist_id->id,
+            'description' => fake()->sentence(rand(10, 16))
         ];
     }
 }

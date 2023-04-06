@@ -38,36 +38,17 @@ class PlaylistFactory extends Factory
             )
         );
 
-        $image_link = 'https://picsum.photos/seed/' . rand(1, 3000) . '/400/400';
+        $image_link = 'https://picsum.photos/seed/' . rand(1, 3000) . '/1000/1000';
 
-        $contents = file_get_contents($image_link, false, $context);
-
-
-
-        // $palette = Palette::fromFilename('/Users/vfa/Documents/Projects/pause/demo.jpg');
-        $palette = Palette::fromContents($contents);
-
-
-
-
-        $color = $palette->getMostUsedColors(1);
-
-        $extractor = new ColorExtractor($palette);
-
-        $colors = $extractor->extract(5);
-
-
-        $category = ['Rap', 'Chill', 'Bolero', 'Pop'];
-
-        // Get bg color from image
-        $bg_color = Color::fromIntToHex(array_values($colors)[0]);
         $user_created_id = User::inRandomOrder()->first();
         $song_id = Song::inRandomOrder()->first();
+        $category = ['Rap', 'Chill', 'Bolero', 'Pop'];
+
 
         return [
             //
             "name" => fake()->colorName(),
-            'bg_color' => $bg_color,
+            'bg_color' => '#fff292',
             'user_id' => $user_created_id->id,
             'imageURL' => $image_link,
             'category' => $category[array_rand($category)],

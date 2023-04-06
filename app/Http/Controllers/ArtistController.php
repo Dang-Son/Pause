@@ -63,7 +63,7 @@ class ArtistController extends Controller
     {
 
         $artist = QueryBuilder::for(Artist::where('id', $artist->id))
-            ->allowedIncludes(['user'])
+            ->allowedIncludes(['user', 'songs'])
             ->firstOrFail();
         return new ArtistResource($artist);
     }

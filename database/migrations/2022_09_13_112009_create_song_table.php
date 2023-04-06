@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('views');
             $table->string('imageURL');
             $table->string('audioURL');
+            $table->string('description');
             $table->timestamps();
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
 

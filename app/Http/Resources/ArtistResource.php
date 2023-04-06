@@ -21,6 +21,8 @@ class ArtistResource extends JsonResource
                 'name' => $this->name,
                 'followed' => $this->followed,
                 'user_id' => $this->user_id,
+                'avtURL' => $this->user->avtURL,
+                'songCount' => $this->songCount()
             ],
 
             'relationships' => [

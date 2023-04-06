@@ -1,4 +1,4 @@
-GET http://127.0.0.1:8000/api/artist/1?include=user,songs
+GET http://127.0.0.1:8000/api/artist/3?include=songs
 ###
 GET http://127.0.0.1:8000/api/artist/3
 ###

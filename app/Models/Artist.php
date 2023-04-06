@@ -23,6 +23,12 @@ class Artist extends Model
         return $this->hasMany(Song::class);
     }
 
+
+    public function songCount()
+    {
+        return $this->songs()->count();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
