@@ -149,10 +149,15 @@ class HistoryController extends Controller
 
     public function get_history_of_user(User $user)
     {
-        $results =    DB::table('histories')
-            ->select(['user_id'])
-            ->groupBy('user_id')->get();
+        // $results =  DB::table('histories')
+        //     ->select(['user_id'])
+        //     ->groupBy('user_id')->get();
 
-        return $results;
+
+        $rerults =         QueryBuilder::for(History::where('user_id', $user->id))
+            ->take(10)
+            ->orderByDesc('created_at')
+            ->get();
+        return HistoryResource::collection($rerults->load('song'));
     }
 }
