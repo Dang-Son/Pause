@@ -84,4 +84,10 @@ class SongsController extends Controller
         $song->delete();
         return response(null, 204);
     }
+
+    public function uploadSong(Request $request)
+    {
+        $song = Song::create($request->input(("data.attributes")));
+        return new SongResource($song);
+    }
 }

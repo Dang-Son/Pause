@@ -49,45 +49,47 @@ class PlaylistController extends Controller
      */
     public function store(StorePlaylistRequest $request)
     {
+        $playlist = Playlist::create($request->input('data.attributes'));
+        return  new PlaylistResource($playlist);
 
-        if ($request->hasFile('image')) {
+        // if ($request->hasFile('image')) {
 
-            $file = $request->file('image');
-            // $uploadedFileSoundUrl = Cloudinary::uploadVideo($request->file('audio')->getRealPath())->getSecurePath();
-
-
-
-
-
-
-            // $palette = Palette::fromFilename('/Users/vfa/Documents/Projects/pause/demo.jpg');
-            $palette = Palette::fromContents(\Illuminate\Support\Facades\File::get($file));
-
-            $color = $palette->getMostUsedColors(1);
-
-            $extractor = new ColorExtractor($palette);
-
-            $colors = $extractor->extract(5);
+        //     $file = $request->file('image');
+        //     // $uploadedFileSoundUrl = Cloudinary::uploadVideo($request->file('audio')->getRealPath())->getSecurePath();
 
 
 
-            // Get bg color from image
-            $bg_color = Color::fromIntToHex(array_values($colors)[0]);
 
-            $uploadedFileImageUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-            $song = Playlist::create([
-                'name' => $request->name,
-                'bg_color' =>  $bg_color,
-                'user_id' => 1,
-                'category' => $request->category,
-                'views' => 0,
-                'likes' => 0,
-                'imageURL' => $uploadedFileImageUrl,
-            ]);
-            return new PlaylistResource($song);
-        }
 
-        return response(null, 502);
+
+        //     // $palette = Palette::fromFilename('/Users/vfa/Documents/Projects/pause/demo.jpg');
+        //     $palette = Palette::fromContents(\Illuminate\Support\Facades\File::get($file));
+
+        //     $color = $palette->getMostUsedColors(1);
+
+        //     $extractor = new ColorExtractor($palette);
+
+        //     $colors = $extractor->extract(5);
+
+
+
+        //     // Get bg color from image
+        //     $bg_color = Color::fromIntToHex(array_values($colors)[0]);
+
+        //     $uploadedFileImageUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        //     $song = Playlist::create([
+        //         'name' => $request->name,
+        //         'bg_color' =>  $bg_color,
+        //         'user_id' => 1,
+        //         'category' => $request->category,
+        //         'views' => 0,
+        //         'likes' => 0,
+        //         'imageURL' => $uploadedFileImageUrl,
+        //     ]);
+        //     return new PlaylistResource($song);
+        // }
+
+        // return response(null, 502);
     }
 
     /**

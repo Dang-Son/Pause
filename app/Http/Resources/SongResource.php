@@ -26,7 +26,7 @@ class SongResource extends JsonResource
                 'audioURL' => $this->audioURL,
                 'category' => $this->playlist->category,
                 'description' => $this->description,
-                'playlist_id' => $this->playlist->id
+                'playlist_id' => $this->playlist->id,
             ],
 
             'relationships' => [
@@ -37,6 +37,11 @@ class SongResource extends JsonResource
                 'artist' => [
                     'links' => [],
                     'data' => new ArtistResource($this->whenLoaded('artist'))
+                ],
+
+                'comments' => [
+                    'links' => [],
+                    'data' => CommentResource::collection($this->comments)
                 ],
             ],
             'created_at' => $this->created_at,

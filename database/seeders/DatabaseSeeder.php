@@ -8,6 +8,7 @@ use App\Models\Artist;
 use App\Models\Comment;
 use App\Models\History;
 use App\Models\Notification;
+use App\Models\Playlist;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -22,9 +23,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(10)->create();
+        Artist::create([
+            'name' => 'Dang Son',
+            'user_id' => '1',
+            'followed' => 0,
+        ]);
+
+
+        Playlist::create([
+            "name" => 'MMMo',
+            'bg_color' => '#fff292',
+            'user_id' => '1',
+            'imageURL' => 'https://picsum.photos/seed/2515/1000/1000',
+            'category' => 'Bolero',
+            'views' => 80,
+            'likes' => 45
+        ]);
+        //
 
         $this->call(PlaylistSeeder::class);
         $this->call(SongSeeder::class);
+
 
 
         $this->call(ArtistSeeder::class);
@@ -68,12 +87,13 @@ class DatabaseSeeder extends Seeder
             'bg_url' => $image_link
 
         ]);
+
         User::create([
             'name' => 'Dang Son',
             'email' => 'sonvjppro@gmail.com',
             'password' => '123456789',
             'avtURL' => $image_link,
-            
+
         ]);
     }
 }

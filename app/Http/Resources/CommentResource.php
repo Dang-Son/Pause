@@ -24,7 +24,7 @@ class CommentResource extends JsonResource
             'relationships' => [
                 'user' => [
                     'links' => [],
-                    'data' => new UserResource($this->whenLoaded('user')),
+                    'data' => new UserIdentifierResource($this->user),
                 ],
                 'song' => [
                     'links' => [],
