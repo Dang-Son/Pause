@@ -29,7 +29,7 @@ accpet: application/json
 
 ###
 # get related resource with playlist 
-GET  http://127.0.0.1:8000/api/song/1
+GET  http://127.0.0.1:8000/api/song/33
 content-type: application/json
 accpet: application/json
 
@@ -105,5 +105,19 @@ Content-Type: image/jpeg
 
 < ./demo.jpg
 ------chickenHere--
+
+###
+POST  http://127.0.0.1:8000/api/comment/upload
+Content-Type: application/json
+Accept: application/json
+{
+     "data":{
+        "attributes":{
+            "imageURL": "day la data tao them",
+            "name": "asdasdadasd",
+            "user_id": "3"
+        }
+    } 
+}
 
 

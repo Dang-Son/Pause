@@ -18,8 +18,12 @@ class UserIdentifierResource extends JsonResource
             'id' => $this->id,
             'type' => 'user',
             'attributes' => [
-                'name' => $this->name
+                'name' => $this->name,
+                'email' => $this->email,
+                'avtURL' => $this->avtURL
             ],
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

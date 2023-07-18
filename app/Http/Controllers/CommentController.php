@@ -92,4 +92,16 @@ class CommentController extends Controller
         $comment->delete();
         return response(null, 204);
     }
+
+    public function get_comment(comment $comment)
+    {
+        // $cmt = Comment::all()->where('song_id', '=', $comment->);
+        // return [
+        //     'data' => [
+        //         'attributes' => [
+        //             'song_comment' => CommentResource::collection($cmt)
+        //         ],
+        //     ]
+        // ];
+    }
 }

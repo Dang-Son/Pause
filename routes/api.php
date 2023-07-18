@@ -129,4 +129,8 @@ Route::post('/register', [AuthController::class, 'register']);
 //login
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');;
+Route::get('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
+Route::get('/get_comment', [CommentController::class, 'get_comment']);
+
+Route::post('/song/upload', [SongsController::class, 'uploadSong']);
